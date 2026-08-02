@@ -1,0 +1,98 @@
+:host {
+  display: block;
+}
+
+.vitamin-brands {
+  background: #27463a;
+  overflow: hidden;
+  padding: clamp(40px, 5vw, 75px) 0;
+  width: 100%;
+}
+
+.vitamin-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.vitamin-marquee__track {
+  align-items: center;
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.vitamin-marquee__group {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: clamp(18px, 2.5vw, 42px);
+  padding-right: clamp(18px, 2.5vw, 42px);
+}
+
+.vitamin-logo {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 62px;
+  justify-content: center;
+  width: 170px;
+}
+
+.vitamin-logo img {
+  display: block;
+  height: 50px;
+  max-width: 155px;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  width: 100%;
+}
+
+.vitamin-logo--small img {
+  max-width: 130px;
+}
+
+.vitamin-logo:hover img,
+.vitamin-logo:focus-visible img {
+  opacity: 0.72;
+  transform: scale(1.05);
+}
+
+.vitamin-logo:focus-visible {
+  outline: 2px solid #e0eccc;
+  outline-offset: 5px;
+}
+
+@media (max-width: 575px) {
+  .vitamin-brands {
+    padding: 36px 0;
+  }
+
+  .vitamin-marquee__group {
+    gap: 15px;
+    padding-right: 15px;
+  }
+
+  .vitamin-logo {
+    height: 52px;
+    width: 135px;
+  }
+
+  .vitamin-logo img {
+    height: 42px;
+    max-width: 125px;
+  }
+
+  .vitamin-logo--small img {
+    max-width: 105px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vitamin-marquee {
+    overflow-x: auto;
+  }
+
+  .vitamin-marquee__track {
+    transform: none !important;
+  }
+}
