@@ -1,0 +1,245 @@
+.olif-slider {
+  --slider-duration: 6s;
+
+  background: #27463a;
+  height: clamp(580px, 78svh, 850px);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.olif-slider__viewport {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.olif-slide {
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.olif-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  z-index: 2;
+}
+
+.olif-slide > img {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  transform: scale(1.06);
+  width: 100%;
+}
+
+.olif-slide__overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 35, 27, 0.78) 0%,
+      rgba(14, 35, 27, 0.42) 43%,
+      rgba(14, 35, 27, 0.08) 75%
+    );
+  inset: 0;
+  position: absolute;
+}
+
+.olif-slide__content {
+  color: #ffffff;
+  left: var(--page-gutter);
+  max-width: 760px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.olif-slide__content p {
+  color: #e0eccc;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.olif-slide__content h1,
+.olif-slide__content h2 {
+  color: #ffffff;
+  font-family: "Neue Haas Display", "Archivo Black", Arial, sans-serif;
+  font-size: clamp(54px, 7vw, 112px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.olif-slide__content a {
+  align-items: center;
+  background: #e0eccc;
+  border-radius: 999px;
+  color: #18372d;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 18px;
+  margin-top: 35px;
+  padding: 15px 23px;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.olif-slide__content a:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+
+.olif-slide__content a span {
+  font-size: 18px;
+  transition: transform 0.25s ease;
+}
+
+.olif-slide__content a:hover span {
+  transform: translateX(4px);
+}
+
+.olif-slider__controls {
+  align-items: center;
+  bottom: 35px;
+  display: flex;
+  gap: 18px;
+  position: absolute;
+  right: var(--page-gutter);
+  z-index: 5;
+}
+
+.olif-slider__arrow {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 20px;
+  height: 46px;
+  justify-content: center;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+  width: 46px;
+}
+
+.olif-slider__arrow:hover {
+  background: #e0eccc;
+  border-color: #e0eccc;
+  color: #18372d;
+}
+
+.olif-slider__dots {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.olif-slider__dot {
+  background: rgba(255, 255, 255, 0.45);
+  border: 0;
+  border-radius: 999px;
+  height: 7px;
+  padding: 0;
+  transition:
+    background-color 0.3s ease,
+    width 0.3s ease;
+  width: 7px;
+}
+
+.olif-slider__dot.is-active {
+  background: #e0eccc;
+  width: 27px;
+}
+
+.olif-slider__progress {
+  background: rgba(255, 255, 255, 0.2);
+  bottom: 0;
+  height: 3px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 5;
+}
+
+.olif-slider__progress span {
+  background: #e0eccc;
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .olif-slider {
+    height: min(720px, 78svh);
+    min-height: 590px;
+  }
+
+  .olif-slide > img {
+    object-position: 60% center;
+  }
+
+  .olif-slide__overlay {
+    background:
+      linear-gradient(
+        0deg,
+        rgba(14, 35, 27, 0.86) 0%,
+        rgba(14, 35, 27, 0.35) 70%,
+        rgba(14, 35, 27, 0.1) 100%
+      );
+  }
+
+  .olif-slide__content {
+    bottom: 100px;
+    left: 20px;
+    max-width: calc(100% - 40px);
+    top: auto;
+    transform: none;
+  }
+
+  .olif-slide__content h1,
+  .olif-slide__content h2 {
+    font-size: clamp(46px, 14vw, 68px);
+  }
+
+  .olif-slide__content a {
+    margin-top: 26px;
+  }
+
+  .olif-slider__controls {
+    bottom: 28px;
+    left: 20px;
+    right: auto;
+  }
+
+  .olif-slider__arrow {
+    height: 42px;
+    width: 42px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olif-slide > img,
+  .olif-slide__content > *,
+  .olif-slider__progress span {
+    transform: none !important;
+  }
+}
