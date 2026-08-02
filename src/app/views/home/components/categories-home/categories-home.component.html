@@ -1,0 +1,70 @@
+<section
+  class="discover-section"
+  id="discover"
+  aria-labelledby="discoverTitle"
+>
+  <div class="container-fluid">
+    <div class="discover-heading">
+      <div>
+        <p class="discover-eyebrow fs-8 text-gray-500">
+          Explora y descubre
+        </p>
+
+        <h2
+          id="discoverTitle"
+          class="fw-700 text-gray-800"
+        >
+          Nuestras <br>
+          Categorías
+        </h2>
+      </div>
+
+      <div>
+        <a
+          href="/productos"
+          class="discover-all js-circle-button"
+        >
+          <span
+            class="button-circle"
+            aria-hidden="true"
+          ></span>
+
+          <span class="button-label">
+            Ver todos
+
+            <span
+              class="button-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="story-grid">
+      @for (category of categories; track category.id) {
+        <a
+          [class]="'story-card ' + category.colorClass"
+          [href]="category.link"
+          [attr.aria-label]="'Ver productos de ' + category.name"
+        >
+          <img
+            [src]="category.image"
+            [alt]="category.alt"
+          >
+
+          <div
+            class="story-shade"
+            aria-hidden="true"
+          ></div>
+
+          <div class="story-content">
+            <h3>{{ category.name }}</h3>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>

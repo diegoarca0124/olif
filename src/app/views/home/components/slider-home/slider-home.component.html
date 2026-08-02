@@ -1,84 +1,63 @@
-<section class="olif-slider" aria-label="Promociones destacadas">
-  <div class="olif-slider__viewport">
-    <article class="olif-slide is-active">
-      <img
-        src="./assets/slider/slide-01.webp"
-        alt="Vitaminas y suplementos seleccionados"
-      >
+<swiper-container
+  slides-per-view="1"
+  loop="true"
+  autoplay-delay="5000"
+  autoplay-disable-on-interaction="false"
+  effect="fade"
+  fade-effect-cross-fade="true"
+  pagination="true"
+  navigation="true"
+>
+  @for (slide of slides; track slide.image) {
+    <swiper-slide>
+      <article class="slide">
+        <img
+          class="slide-image"
+          [src]="slide.image"
+          [alt]="slide.alt"
+        >
 
-      <div class="olif-slide__overlay"></div>
+        @if (
+          slide.eyebrow ||
+          slide.title ||
+          slide.description ||
+          slide.buttonText
+        ) {
+          <div class="slide-overlay"></div>
 
-      <div class="olif-slide__content">
-        <p>Bienestar todos los días</p>
-        <h1>Cuida de ti,<br>naturalmente.</h1>
+          <div
+            class="slide-content"
+            [class.position-center]="slide.textPosition === 'center'"
+            [class.position-right]="slide.textPosition === 'right'"
+          >
+            @if (slide.eyebrow) {
+              <p class="slide-eyebrow">
+                {{ slide.eyebrow }}
+              </p>
+            }
 
-        <a href="categoria.html?categoria=vitaminas">
-          Ver vitaminas
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </article>
+            @if (slide.title) {
+              <h2>{{ slide.title }}</h2>
+            }
 
-    <article class="olif-slide">
-      <img
-        src="./assets/slider/slide-02.webp"
-        alt="Alimentos saludables para tu rutina"
-      >
+            @if (slide.description) {
+              <p class="slide-description">
+                {{ slide.description }}
+              </p>
+            }
 
-      <div class="olif-slide__overlay"></div>
-
-      <div class="olif-slide__content">
-        <p>Una elección más simple</p>
-        <h2>Alimentos que<br>se sienten bien.</h2>
-
-        <a href="categoria.html?categoria=alimentos">
-          Ver alimentos
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </article>
-
-    <article class="olif-slide">
-      <img
-        src="./assets/slider/slide-03.webp"
-        alt="Productos para el cuidado personal"
-      >
-
-      <div class="olif-slide__overlay"></div>
-
-      <div class="olif-slide__content">
-        <p>Cuidado para tu vida real</p>
-        <h2>Tu rutina,<br>a tu manera.</h2>
-
-        <a href="categoria.html?categoria=cuidado-personal">
-          Ver cuidado personal
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </article>
-  </div>
-
-  <div class="olif-slider__controls">
-    <button
-      class="olif-slider__arrow olif-slider__previous"
-      type="button"
-      aria-label="Diapositiva anterior"
-    >
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </button>
-
-    <div class="olif-slider__dots" aria-label="Seleccionar diapositiva"></div>
-
-    <button
-      class="olif-slider__arrow olif-slider__next"
-      type="button"
-      aria-label="Siguiente diapositiva"
-    >
-      <ion-icon name="arrow-forward-outline"></ion-icon>
-    </button>
-  </div>
-
-  <div class="olif-slider__progress" aria-hidden="true">
-    <span></span>
-  </div>
-</section>
+            @if (slide.buttonText && slide.buttonLink) {
+              <a
+                class="slide-button"
+                [href]="slide.buttonLink"
+              >
+                {{ slide.buttonText }}
+                <span aria-hidden="true">→</span>
+              </a>
+            }
+          </div>
+        }
+      </article>
+    </swiper-slide>
+  }
+</swiper-container>
