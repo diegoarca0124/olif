@@ -5,6 +5,8 @@ import { CategoriesHomeComponent } from './components/categories-home/categories
 import { BrandsHomeComponent } from './components/brands-home/brands-home.component';
 import { FounderHomeComponent } from './components/founder-home/founder-home.component';
 import { ShippingHomeComponent } from './components/shipping-home/shipping-home.component';
+import { FeaturedHomeComponent } from './components/featured-home/featured-home.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,9 @@ import { ShippingHomeComponent } from './components/shipping-home/shipping-home.
     CategoriesHomeComponent,
     BrandsHomeComponent,
     FounderHomeComponent,
-    ShippingHomeComponent
+    ShippingHomeComponent,
+    FeaturedHomeComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
