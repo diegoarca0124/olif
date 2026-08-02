@@ -48,7 +48,7 @@ export class BrandsHomeComponent {
       gsap.set(track, { x: 0 });
       this.tween = gsap.to(track, {
         x: -distance,
-        duration: distance / 35,
+        duration: distance / 10,
         repeat: -1,
         ease: 'none',
         force3D: true

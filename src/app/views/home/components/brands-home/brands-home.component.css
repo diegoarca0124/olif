@@ -5,7 +5,7 @@
 .vitamin-brands {
   background: #27463a;
   overflow: hidden;
-  padding: clamp(40px, 5vw, 75px) 0;
+  padding: clamp(40px, 2.5vw, 75px) 0;
   width: 100%;
 }
 
@@ -25,7 +25,7 @@
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  gap: clamp(18px, 2.5vw, 42px);
+  gap: clamp(18px, 2.5vw, 50px);
   padding-right: clamp(18px, 2.5vw, 42px);
 }
 
@@ -35,7 +35,6 @@
   flex-shrink: 0;
   height: 62px;
   justify-content: center;
-  width: 170px;
 }
 
 .vitamin-logo img {

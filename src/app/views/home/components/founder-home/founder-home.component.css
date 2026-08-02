@@ -60,7 +60,7 @@
   overflow: hidden;
   position: relative;
 
-  background-image: url("./assets/our.png");
+  background-image: url("/our.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -103,7 +103,7 @@
 }
 
 .founder-story__parallax {
-  background-image: url("../../../../../../public/our.png");
+  background-image: url("/our.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

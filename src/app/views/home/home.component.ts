@@ -4,6 +4,7 @@ import { SliderHomeComponent } from './components/slider-home/slider-home.compon
 import { CategoriesHomeComponent } from './components/categories-home/categories-home.component';
 import { BrandsHomeComponent } from './components/brands-home/brands-home.component';
 import { FounderHomeComponent } from './components/founder-home/founder-home.component';
+import { ShippingHomeComponent } from './components/shipping-home/shipping-home.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import { FounderHomeComponent } from './components/founder-home/founder-home.com
     SliderHomeComponent,
     CategoriesHomeComponent,
     BrandsHomeComponent,
-    FounderHomeComponent
+    FounderHomeComponent,
+    ShippingHomeComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
