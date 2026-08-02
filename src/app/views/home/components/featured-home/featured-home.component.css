@@ -47,7 +47,7 @@
 .product-catalog__grid {
   display: grid;
   gap: clamp(28px, 3vw, 48px) clamp(16px, 2vw, 28px);
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .product-card {
@@ -196,6 +196,14 @@
   display: flex;
   justify-content: center;
   margin-top: clamp(50px, 5vw, 80px);
+}
+
+/* Escritorio mediano: cuatro productos por fila */
+
+@media (max-width: 1199.98px) {
+  .product-catalog__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 /* Tablet: dos productos por fila */
