@@ -240,34 +240,6 @@
   });
 })();
 
-(() => {
-  const footer = document.querySelector(".site-footer");
-
-  if (!footer) {
-    return;
-  }
-
-  const desktop = window.matchMedia("(min-width: 768px)");
-
-  const updateFooterSpace = () => {
-    const footerSpace = desktop.matches ? footer.offsetHeight : 0;
-
-    document.documentElement.style.setProperty(
-      "--footer-reveal-height",
-      `${footerSpace}px`
-    );
-  };
-
-  updateFooterSpace();
-
-  window.addEventListener("load", () => {
-    updateFooterSpace();
-  });
-
-  window.addEventListener("resize", () => {
-    updateFooterSpace();
-  });
-})();
 
 (() => {
   const drawer = document.querySelector(".cart-drawer");
