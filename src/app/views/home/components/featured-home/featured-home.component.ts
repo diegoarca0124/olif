@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
 import { ProductRow, ProductsService } from '../../../../services/products.service';
@@ -20,7 +20,8 @@ interface FeaturedProduct {
 @Component({
   selector: 'app-featured-home',
   imports: [
-    CurrencyPipe
+    CurrencyPipe,
+    DecimalPipe
   ],
   templateUrl: './featured-home.component.html',
   styleUrl: './featured-home.component.css',

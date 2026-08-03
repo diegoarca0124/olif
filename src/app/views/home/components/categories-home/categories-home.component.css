@@ -3,7 +3,7 @@
 }
 
 .discover-section {
-  background: #f8efd2;
+  background: #fff7df;
   padding: clamp(72px, 6vw, 128px) 0;
 }
 
@@ -57,7 +57,7 @@
 
 .button-circle {
   aspect-ratio: 1;
-  background: #116973;
+  background: #285f43;
   border-radius: 50%;
   left: 0;
   pointer-events: none;
@@ -84,7 +84,7 @@
 }
 
 .discover-all:focus-visible {
-  outline: 3px solid #116973;
+  outline: 3px solid #285f43;
   outline-offset: 4px;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .story-card:focus-visible {
-  outline: 3px solid #116973;
+  outline: 3px solid #285f43;
   outline-offset: 5px;
 }
 

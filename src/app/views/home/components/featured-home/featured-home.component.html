@@ -1,44 +1,121 @@
-<section class="product-catalog" id="shop" aria-labelledby="productCatalogTitle">
+<section
+  class="product-catalog"
+  id="shop"
+  aria-labelledby="productCatalogTitle"
+>
   <div class="product-catalog__container">
     <header class="product-catalog__heading">
-      <p class="product-catalog__eyebrow">Nuestros favoritos</p>
-      <h2 id="productCatalogTitle">Productos destacados</h2>
-      <p>Productos seleccionados para acompañar tu bienestar todos los días.</p>
+      <p class="product-catalog__eyebrow">
+        Nuestros favoritos
+      </p>
+
+      <h2 id="productCatalogTitle">
+        Productos destacados
+      </h2>
+
+      <p>
+        Productos seleccionados para acompañar tu bienestar todos los días.
+      </p>
     </header>
-    <div class="product-catalog__grid">
-      @for (product of products; track product.id) {
-        <article class="product-card">
-          <a [href]="product.link" class="product-card__image">
-            @if (product.label) {
-              <span class="product-card__tag">{{ product.label }}</span>
-            }
-            <img [src]="product.cover" [alt]="product.alt" loading="lazy">
-          </a>
-          <div class="product-card__information">
-            <p class="product-card__category">{{ product.category }}</p>
-            <h3><a [href]="product.link">{{ product.name }}</a></h3>
-            <div class="product-card__details">
-              <span class="product-card__origin">
-                <img [src]="product.flag" [alt]="product.originLabel" loading="lazy" style="height: 10px;">
-                {{ product.origin }}
-              </span>
-              <span class="product-card__format">{{ product.format }}</span>
+
+    @if (loading) {
+      <div class="product-catalog__status" aria-live="polite">
+        Cargando productos...
+      </div>
+    } @else if (errorMessage) {
+      <div class="product-catalog__status product-catalog__status--error">
+        {{ errorMessage }}
+      </div>
+    } @else {
+      <div class="product-catalog__grid">
+        @for (product of products; track product.id) {
+          <article class="product-card">
+            <a
+              [href]="product.link"
+              class="product-card__image"
+              [attr.aria-label]="'Ver ' + product.name"
+            >
+              @if (product.label) {
+                <span class="product-card__tag">
+                  {{ product.label }}
+                </span>
+              }
+
+              <img
+                class="product-card__cover"
+                [src]="product.cover"
+                [alt]="product.alt"
+                loading="lazy"
+              >
+
+              @if (product.flag === '/flags/united-states.svg') {
+                <span
+                  class="product-card__country-flag"
+                  aria-label="Producto de Estados Unidos"
+                >
+                  <img
+                    src="/flags/united-states.svg"
+                    alt="Bandera de Estados Unidos"
+                  >
+                </span>
+              }
+            </a>
+
+            <div class="product-card__information">
+              <p class="product-card__category">
+                {{ product.category }}
+              </p>
+
+              <h3>
+                <a [href]="product.link" class="text-uppercase">
+                  {{ product.name }}
+                </a>
+              </h3>
+
+              
+
+              <div class="product-card__footer">
+                <span>
+                  S/. {{ product.price | number:'1.2-2' }}
+                </span>
+
+                <button
+                  type="button"
+                  [attr.aria-label]="'Agregar ' + product.name"
+                >
+                  <ion-icon
+                    name="add-outline"
+                    aria-hidden="true"
+                  ></ion-icon>
+                </button>
+              </div>
             </div>
-            <div class="product-card__footer">
-              <span>{{ product.price | currency:'PEN':'symbol-narrow':'1.2-2' }}</span>
-              <button type="button" [attr.aria-label]="'Agregar ' + product.name">
-                <ion-icon name="add-outline"></ion-icon>
-              </button>
-            </div>
-          </div>
-        </article>
-      }
-    </div>
-    <div class="product-catalog__action">
-      <a href="/productos" class="discover-all js-circle-button">
-        <span class="button-circle" aria-hidden="true"></span>
-        <span class="button-label">Ver todos <span class="button-arrow" aria-hidden="true">→</span></span>
-      </a>
-    </div>
+          </article>
+        }
+      </div>
+
+      <div class="product-catalog__action">
+        <a
+          href="/productos"
+          class="discover-all js-circle-button"
+        >
+          <span
+            class="button-circle"
+            aria-hidden="true"
+          ></span>
+
+          <span class="button-label">
+            Ver todos
+
+            <span
+              class="button-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </span>
+        </a>
+      </div>
+    }
   </div>
 </section>

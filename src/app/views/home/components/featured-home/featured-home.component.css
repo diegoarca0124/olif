@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .product-catalog {
   background: #f7f6f2;
   overflow: hidden;
@@ -44,6 +48,24 @@
   max-width: 580px;
 }
 
+/* Estados */
+
+.product-catalog__status {
+  align-items: center;
+  color: #4b5563;
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  min-height: 220px;
+  text-align: center;
+}
+
+.product-catalog__status--error {
+  color: #a33b32;
+}
+
+/* Grid */
+
 .product-catalog__grid {
   display: grid;
   gap: clamp(28px, 3vw, 48px) clamp(16px, 2vw, 28px);
@@ -51,8 +73,12 @@
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
+
+/* Imagen */
 
 .product-card__image {
   aspect-ratio: 1 / 1.15;
@@ -63,7 +89,7 @@
   position: relative;
 }
 
-.product-card__image img {
+.product-card__cover {
   display: block;
   height: 100%;
   object-fit: cover;
@@ -71,14 +97,16 @@
   width: 100%;
 }
 
-.product-card:hover .product-card__image img {
+.product-card:hover .product-card__cover {
   transform: scale(1.035);
 }
+
+/* Etiqueta superior */
 
 .product-card__tag {
   background: #e0eccc;
   border-radius: 999px;
-  color: #116973;
+  color: #285f43;
   font-size: 10px;
   font-weight: 800;
   left: 14px;
@@ -90,7 +118,42 @@
   z-index: 2;
 }
 
+/* Bandera de Estados Unidos sobre el cover */
+
+.product-card__country-flag {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  bottom: 13px;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.16),
+    0 1px 4px rgba(0, 0, 0, 0.12);
+  display: flex;
+  height: 23px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2px;
+  position: absolute;
+  right: 13px;
+  width: 34px;
+  z-index: 2;
+}
+
+.product-card__country-flag img {
+  border-radius: 2px;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Información */
+
 .product-card__information {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 18px 3px 0;
 }
 
@@ -100,86 +163,92 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   margin: 0 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
+/* Títulos uniformes */
+
 .product-card__information h3 {
-  font-size: clamp(17px, 1.1vw, 21px);
-  font-weight: 700;
+  font-size: clamp(12px, 1vw, 21px);
+  font-weight: 800;
   line-height: 1.25;
   margin: 0;
+  min-height: 2.5em;
+  letter-spacing: 0.07em;
 }
 
 .product-card__information h3 a {
   color: #1f2937;
+  display: -webkit-box;
+  overflow: hidden;
   text-decoration: none;
+  transition: color 0.25s ease;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-.product-card__details {
+.product-card__information h3 a:hover {
+  color: #285f43;
+}
+
+/* Formato */
+
+.product-card__format-row {
   align-items: center;
   border-bottom: 1px solid rgba(39, 70, 58, 0.12);
   display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  margin-top: 15px;
-  padding-bottom: 14px;
-}
-
-.product-card__origin {
-  align-items: center;
-  color: #4b5563;
-  display: inline-flex;
-  font-size: 11px;
-  font-weight: 600;
-  gap: 7px;
-  min-width: 0;
-}
-
-.product-card__flag {
-  flex-shrink: 0;
-  font-family: Arial, sans-serif;
-  font-size: 19px;
-  line-height: 1;
+  min-height: 52px;
+  padding-block: 12px;
 }
 
 .product-card__format {
   background: #e0eccc;
   border-radius: 999px;
-  color: #116973;
-  flex-shrink: 0;
+  color: #285f43;
+  display: inline-block;
   font-size: 10px;
   font-weight: 800;
-  padding: 7px 10px;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 7px 11px;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Precio y botón */
 
 .product-card__footer {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .product-card__footer > span {
-  color: #116973;
+  color: #252525;
   font-size: 15px;
   font-weight: 800;
 }
 
 .product-card__footer button {
   align-items: center;
-  background: #116973;
+  background: #285f43;
   border: 0;
   border-radius: 50%;
   color: #ffffff;
+  cursor: pointer;
   display: inline-flex;
+  flex: 0 0 auto;
   font-size: 20px;
-  height: 38px;
+  height: 30px;
   justify-content: center;
   transition:
     background-color 0.25s ease,
     transform 0.25s ease;
-  width: 38px;
+  width: 30px;
 }
 
 .product-card__footer button:hover {
@@ -192,13 +261,15 @@
   outline-offset: 3px;
 }
 
+/* Acción inferior */
+
 .product-catalog__action {
   display: flex;
   justify-content: center;
   margin-top: clamp(50px, 5vw, 80px);
 }
 
-/* Escritorio mediano: cuatro productos por fila */
+/* Cuatro productos */
 
 @media (max-width: 1199.98px) {
   .product-catalog__grid {
@@ -206,7 +277,7 @@
   }
 }
 
-/* Tablet: dos productos por fila */
+/* Dos productos */
 
 @media (max-width: 991.98px) {
   .product-catalog__grid {
@@ -229,28 +300,34 @@
     border-radius: 14px;
   }
 
+  .product-card__tag {
+    font-size: 8px;
+    left: 9px;
+    padding: 6px 9px;
+    top: 9px;
+  }
+
+  .product-card__country-flag {
+    border-width: 1px;
+    bottom: 9px;
+    height: 19px;
+    padding: 2px;
+    right: 9px;
+    width: 29px;
+  }
+
   .product-card__information {
     padding-top: 13px;
   }
 
   .product-card__information h3 {
     font-size: 15px;
+    min-height: 2.5em;
   }
 
-  .product-card__details {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 9px;
-    margin-top: 12px;
-    padding-bottom: 12px;
-  }
-
-  .product-card__origin {
-    font-size: 10px;
-  }
-
-  .product-card__flag {
-    font-size: 17px;
+  .product-card__format-row {
+    min-height: 48px;
+    padding-block: 10px;
   }
 
   .product-card__format {
@@ -267,14 +344,36 @@
   }
 
   .product-card__footer button {
+    font-size: 18px;
     height: 34px;
     width: 34px;
   }
 }
 
+@media (max-width: 380px) {
+  .product-catalog__container {
+    padding-inline: 14px;
+  }
+
+  .product-catalog__grid {
+    gap-inline: 9px;
+  }
+
+  .product-card__information h3 {
+    font-size: 14px;
+  }
+
+  .product-card__footer > span {
+    font-size: 12px;
+  }
+}
+
+/* Accesibilidad */
+
 @media (prefers-reduced-motion: reduce) {
-  .product-card__image img,
-  .product-card__footer button {
+  .product-card__cover,
+  .product-card__footer button,
+  .product-card__information h3 a {
     transition: none;
   }
 }

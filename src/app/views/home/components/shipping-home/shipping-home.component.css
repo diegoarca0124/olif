@@ -1,5 +1,5 @@
 .coverage-section {
-  background: #116973;
+  background: #285f43;
   color: #ffffff;
   isolation: isolate;
   overflow: hidden;
@@ -58,7 +58,7 @@
   align-items: center;
   background: #e0eccc;
   border-radius: 50%;
-  color: #116973;
+  color: #285f43;
   display: flex;
   font-size: 23px;
   height: 48px;
@@ -162,7 +162,7 @@
 .coverage-panel__badge {
   background: #e0eccc;
   border-radius: 999px;
-  color: #116973;
+  color: #285f43;
   flex-shrink: 0;
   font-size: 10px;
   font-weight: 800;
@@ -206,13 +206,13 @@
 }
 
 .coverage-district > span:nth-child(2) {
-  color: #116973;
+  color: #323333;
   font-size: clamp(13px, 1vw, 15px);
   font-weight: 750;
 }
 
 .coverage-district ion-icon {
-  color: #116973;
+  color: #285f43;
   font-size: 16px;
   opacity: 0;
   transform: translateX(-6px);
@@ -235,7 +235,7 @@
 }
 
 .coverage-panel__footer ion-icon {
-  color: #116973;
+  color: #285f43;
   flex-shrink: 0;
   font-size: 18px;
 }
