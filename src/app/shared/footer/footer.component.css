@@ -448,6 +448,10 @@
   font-weight: 700;
 }
 
+.h-20px{
+  height: 20px;
+}
+
 .site-footer__payment {
   align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.16);

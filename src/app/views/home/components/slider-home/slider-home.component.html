@@ -1,63 +1,24 @@
-<swiper-container
-  slides-per-view="1"
-  loop="true"
-  autoplay-delay="5000"
-  autoplay-disable-on-interaction="false"
-  effect="fade"
-  fade-effect-cross-fade="true"
-  pagination="true"
-  navigation="true"
->
-  @for (slide of slides; track slide.image) {
-    <swiper-slide>
-      <article class="slide">
-        <img
-          class="slide-image"
-          [src]="slide.image"
-          [alt]="slide.alt"
-        >
-
-        @if (
-          slide.eyebrow ||
-          slide.title ||
-          slide.description ||
-          slide.buttonText
-        ) {
-          <div class="slide-overlay"></div>
-
-          <div
-            class="slide-content"
-            [class.position-center]="slide.textPosition === 'center'"
-            [class.position-right]="slide.textPosition === 'right'"
+<section class="slider-section" aria-label="Promociones destacadas">
+  <div class="slider-container">
+    <swiper-container
+      slides-per-view="1"
+      loop="true"
+      autoplay-delay="5000"
+      autoplay-disable-on-interaction="false"
+      effect="fade"
+      fade-effect-cross-fade="true"
+      pagination="true"
+      navigation="true"
+    >
+      @for (slide of slides; track slide.image) {
+        <swiper-slide>
+          <img
+            class="slide-image"
+            [src]="slide.image"
+            [alt]="slide.alt"
           >
-            @if (slide.eyebrow) {
-              <p class="slide-eyebrow">
-                {{ slide.eyebrow }}
-              </p>
-            }
-
-            @if (slide.title) {
-              <h2>{{ slide.title }}</h2>
-            }
-
-            @if (slide.description) {
-              <p class="slide-description">
-                {{ slide.description }}
-              </p>
-            }
-
-            @if (slide.buttonText && slide.buttonLink) {
-              <a
-                class="slide-button"
-                [href]="slide.buttonLink"
-              >
-                {{ slide.buttonText }}
-                <span aria-hidden="true">→</span>
-              </a>
-            }
-          </div>
-        }
-      </article>
-    </swiper-slide>
-  }
-</swiper-container>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+</section>

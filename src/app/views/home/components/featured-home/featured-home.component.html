@@ -9,17 +9,17 @@
       @for (product of products; track product.id) {
         <article class="product-card">
           <a [href]="product.link" class="product-card__image">
-            @if (product.tag) {
-              <span class="product-card__tag">{{ product.tag }}</span>
+            @if (product.label) {
+              <span class="product-card__tag">{{ product.label }}</span>
             }
-            <img [src]="product.image" [alt]="product.alt" loading="lazy">
+            <img [src]="product.cover" [alt]="product.alt" loading="lazy">
           </a>
           <div class="product-card__information">
             <p class="product-card__category">{{ product.category }}</p>
             <h3><a [href]="product.link">{{ product.name }}</a></h3>
             <div class="product-card__details">
               <span class="product-card__origin">
-                <span class="product-card__flag" role="img" [attr.aria-label]="product.originLabel">{{ product.flag }}</span>
+                <img [src]="product.flag" [alt]="product.originLabel" loading="lazy" style="height: 10px;">
                 {{ product.origin }}
               </span>
               <span class="product-card__format">{{ product.format }}</span>

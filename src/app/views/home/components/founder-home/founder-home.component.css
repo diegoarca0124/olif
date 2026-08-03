@@ -42,8 +42,8 @@
 }
 
 .founder-story blockquote {
-  border-left: 2px solid #27463a;
-  color: #27463a;
+  border-left: 2px solid #116973;
+  color: #116973;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(18px, 1.35vw, 23px);
   font-style: italic;
