@@ -1,15 +1,68 @@
 .site-footer {
   background-image: url("/footer.png");
+  background-position: center;
+  background-size: cover;
   bottom: 0;
-  color: #ffffff;
+  color: #fff;
   height: min(760px, 100svh);
   isolation: isolate;
   left: 0;
   min-height: 620px;
-  overflow: hidden;
+  overflow: visible;
   position: fixed;
   right: 0;
   z-index: 1;
+}
+
+.site-footer__tide {
+  height: clamp(75px, 7vw, 115px);
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  transform: translateY(-100%);
+  z-index: 3;
+}
+
+.site-footer__tide-track {
+  bottom: -1px;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 200%;
+  will-change: transform;
+}
+
+.site-footer__tide-track path {
+  fill: #071b15;
+}
+
+.site-footer__tide-track--back {
+  bottom: 7px;
+  opacity: 0.38;
+}
+
+.site-footer__tide-track--back path {
+  fill: #365347;
+}
+
+.site-footer__tide-track--front {
+  z-index: 2;
+}
+
+@media (max-width: 767.98px) {
+  .site-footer__tide {
+    height: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__tide-track {
+    transform: none !important;
+  }
 }
 
 .site-footer::before {
