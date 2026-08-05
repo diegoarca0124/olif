@@ -151,7 +151,6 @@
   box-shadow:
     0 28px 60px
     rgba(31, 39, 22, 0.16);
-  transform: translateY(-6px);
 }
 
 /* Texto superior */
@@ -159,6 +158,7 @@
 .story-content {
   color: inherit;
   position: relative;
+  will-change: transform;
   z-index: 2;
 }
 

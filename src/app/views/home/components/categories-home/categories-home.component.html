@@ -44,27 +44,15 @@
     <div class="story-grid">
       @for (category of categories; track category.id) {
         <a
-          class="story-card"
-          [class]="
-            'story-card ' +
-            category.colorClass
-          "
+          [class]="'story-card ' + category.colorClass"
           [routerLink]="category.link"
-          [attr.aria-label]="
-            'Ver productos de ' +
-            category.name
-          "
+          [attr.aria-label]="'Ver productos de ' + category.name"
           [style.background-color]="category.bg"
           [style.color]="category.color"
         >
           <div class="story-content">
-            <h3>
-              {{ category.name }}
-            </h3>
-
-            <p>
-              asdas
-            </p>
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
           </div>
 
           <img
@@ -76,10 +64,7 @@
 
           <span class="story-link">
             Ver categoría
-
-            <span aria-hidden="true">
-              →
-            </span>
+            <span aria-hidden="true">→</span>
           </span>
         </a>
       }
