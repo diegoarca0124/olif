@@ -34,7 +34,7 @@
         <button class="nav-cart-button">
           <img src="/icons/search-outline-thicker.svg" alt="" class="h-25px w-25px">
         </button>
-        <button class="nav-cart-button js-cart-open" type="button" aria-label="Abrir carrito de compras">
+        <button class="nav-cart-button js-cart-open" type="button" aria-label="Abrir carrito de compras" (click)="cart.open()">
           <img src="/icons/bag-handle-outline-thicker.svg" alt="" class="h-25px w-25px">
           <span class="nav-cart-count" aria-live="polite">0</span>
         </button>
@@ -42,4 +42,4 @@
     </div>
 </nav>
 
-<app-cart></app-cart>
+<app-cart #cart></app-cart>

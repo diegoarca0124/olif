@@ -7,6 +7,26 @@
   --promo-height: 35px;
 }
 
+html,
+body,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
 @font-face {
   font-family: "Neue Haas Display";
   src: url("/fonts/NeueHaasDisplayBlack.ttf") format("truetype");
@@ -121,7 +141,7 @@ a {
   background: currentColor;
   bottom: -5px;
   content: "";
-  height: 1px;
+  height: 2px;
   left: 0;
   position: absolute;
   right: 100%;

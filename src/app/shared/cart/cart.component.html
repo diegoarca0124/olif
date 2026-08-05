@@ -1,38 +1,89 @@
-<aside class="cart-drawer" aria-hidden="true">
-    <button class="cart-drawer__backdrop js-cart-close" type="button" aria-label="Cerrar carrito"></button>
+<aside
+  class="cart-drawer"
+  [class.is-open]="isOpen"
+  [attr.aria-hidden]="!isOpen"
+>
+  <button
+    class="cart-drawer__backdrop"
+    type="button"
+    aria-label="Cerrar carrito"
+    tabindex="-1"
+    (click)="close()"
+  ></button>
 
-    <section class="cart-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-      <header class="cart-drawer__header">
-        <div>
-          <p>Tu selección</p>
-          <h2 id="cartTitle">Carrito</h2>
-        </div>
-
-        <button class="cart-drawer__close js-cart-close" type="button" aria-label="Cerrar carrito">
-          <ion-icon name="close-outline"></ion-icon>
-        </button>
-      </header>
-
-      <div class="cart-drawer__body">
-        <div class="cart-empty">
-          <span aria-hidden="true">
-            <ion-icon name="bag-handle-outline"></ion-icon>
-          </span>
-          <h3>Tu carrito está vacío</h3>
-          <p>Explora nuestros productos y agrega tus favoritos.</p>
-          <button class="cart-empty__button js-cart-shop" type="button">Ver productos</button>
-        </div>
-
-        <div class="cart-items" aria-live="polite"></div>
+  <section
+    class="cart-drawer__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cartTitle"
+  >
+    <header class="cart-drawer__header">
+      <div>
+        <p>Tu selección</p>
+        <h2 id="cartTitle">Carrito</h2>
       </div>
 
-      <footer class="cart-drawer__footer" hidden>
-        <div class="cart-drawer__subtotal">
-          <span>Subtotal</span>
-          <strong>S/ 0.00</strong>
-        </div>
-        <p>El costo de envío se calcula al finalizar la compra.</p>
-        <button class="cart-checkout" type="button">Continuar compra <span aria-hidden="true">→</span></button>
-      </footer>
-    </section>
-  </aside>
+      <button
+        #closeButton
+        class="cart-drawer__close"
+        type="button"
+        aria-label="Cerrar carrito"
+        (click)="close()"
+      >
+        <ion-icon
+          name="close-outline"
+          aria-hidden="true"
+        ></ion-icon>
+      </button>
+    </header>
+
+    <div class="cart-drawer__body">
+      <div class="cart-empty">
+        <span aria-hidden="true">
+          <ion-icon name="bag-handle-outline"></ion-icon>
+        </span>
+
+        <h3>Tu carrito está vacío</h3>
+
+        <p>
+          Explora nuestros productos y agrega tus favoritos.
+        </p>
+
+        <button
+          class="cart-empty__button"
+          type="button"
+          (click)="goToProducts()"
+        >
+          Ver productos
+        </button>
+      </div>
+
+      <div
+        class="cart-items"
+        aria-live="polite"
+      ></div>
+    </div>
+
+    <footer
+      class="cart-drawer__footer"
+      hidden
+    >
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <strong>S/. 0.00</strong>
+      </div>
+
+      <p>
+        El costo de envío se calcula al finalizar la compra.
+      </p>
+
+      <button
+        class="cart-checkout"
+        type="button"
+      >
+        Continuar compra
+        <span aria-hidden="true">→</span>
+      </button>
+    </footer>
+  </section>
+</aside>
