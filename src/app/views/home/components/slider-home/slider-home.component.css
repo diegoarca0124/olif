@@ -16,7 +16,7 @@
 
 swiper-container {
   --swiper-navigation-color: #ffffff;
-  --swiper-navigation-size: 22px;
+  --swiper-navigation-size: 17px;
   --swiper-pagination-color: #e0eccc;
   --swiper-pagination-bullet-inactive-color: #ffffff;
   --swiper-pagination-bullet-inactive-opacity: 0.55;
@@ -30,8 +30,63 @@ swiper-container {
   max-height: 620px;
   min-height: 340px;
   overflow: hidden;
+  position: relative;
   width: 100%;
 }
+
+/* Flechas */
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  align-items: center;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  margin-top: -24px;
+  padding: 14px;
+  top: 50%;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 48px;
+}
+
+swiper-container::part(button-prev) {
+  left: 28px;
+}
+
+swiper-container::part(button-next) {
+  right: 28px;
+}
+
+swiper-container::part(button-prev):hover,
+swiper-container::part(button-next):hover {
+  box-shadow: 0 14px 34px rgba(9, 31, 23, 0.26);
+  color: #18372d;
+  transform: scale(1.06);
+}
+
+swiper-container::part(button-prev):active,
+swiper-container::part(button-next):active {
+  transform: scale(0.96);
+}
+
+swiper-container::part(button-prev):focus-visible,
+swiper-container::part(button-next):focus-visible {
+  outline: 3px solid rgba(224, 236, 204, 0.7);
+  outline-offset: 4px;
+}
+
+/* Slides */
 
 swiper-slide {
   height: 100%;
@@ -78,6 +133,22 @@ swiper-slide {
     border-radius: 16px;
     max-height: 440px;
     min-height: 280px;
+  }
+
+  swiper-container::part(button-prev),
+  swiper-container::part(button-next) {
+    height: 40px;
+    margin-top: -20px;
+    padding: 12px;
+    width: 40px;
+  }
+
+  swiper-container::part(button-prev) {
+    left: 14px;
+  }
+
+  swiper-container::part(button-next) {
+    right: 14px;
   }
 }
 

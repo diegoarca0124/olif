@@ -132,7 +132,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
             .to(
               image,
               {
-                scale: 1.04,
+                scale: 1.2,
                 duration: 0.55
               },
               0

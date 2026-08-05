@@ -1,6 +1,6 @@
 .founder-story {
   align-items: center;
-  background: #f7f6f2;
+  background: #fff;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: auto;
@@ -51,6 +51,7 @@
   margin: clamp(24px, 2.8vw, 36px) 0 0;
   max-width: 35ch;
   padding-left: 24px;
+  font-weight: 500;
 }
 
 .founder-story__visual {

@@ -1,4 +1,7 @@
-<section class="slider-section" aria-label="Promociones destacadas">
+<section
+  class="slider-section"
+  aria-label="Promociones destacadas"
+>
   <div class="slider-container">
     <swiper-container
       slides-per-view="1"
@@ -7,9 +10,8 @@
       autoplay-disable-on-interaction="false"
       effect="fade"
       fade-effect-cross-fade="true"
-      pagination="true"
+      pagination="false"
       navigation="true"
-      [injectStyles]="swiperStyles"
     >
       @for (slide of slides; track slide.image) {
         <swiper-slide>
