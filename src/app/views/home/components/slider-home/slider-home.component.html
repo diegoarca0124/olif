@@ -9,6 +9,7 @@
       fade-effect-cross-fade="true"
       pagination="true"
       navigation="true"
+      [injectStyles]="swiperStyles"
     >
       @for (slide of slides; track slide.image) {
         <swiper-slide>
