@@ -30,7 +30,11 @@
 
         <span class="button-label">
           Ver todos
-          <span class="button-arrow" aria-hidden="true">
+
+          <span
+            class="button-arrow"
+            aria-hidden="true"
+          >
             →
           </span>
         </span>
@@ -40,20 +44,43 @@
     <div class="story-grid">
       @for (category of categories; track category.id) {
         <a
-          [class]="'story-card ' + category.colorClass"
+          class="story-card"
+          [class]="
+            'story-card ' +
+            category.colorClass
+          "
           [routerLink]="category.link"
-          [attr.aria-label]="'Ver productos de ' + category.name"
+          [attr.aria-label]="
+            'Ver productos de ' +
+            category.name
+          "
           [style.background-color]="category.bg"
           [style.color]="category.color"
         >
+          <div class="story-content">
+            <h3>
+              {{ category.name }}
+            </h3>
+
+            <p>
+              asdas
+            </p>
+          </div>
+
           <img
+            class="story-image"
             [src]="category.image"
             [alt]="category.alt"
+            loading="lazy"
           >
 
-          <div class="story-content">
-            <h3>{{ category.name }}</h3>
-          </div>
+          <span class="story-link">
+            Ver categoría
+
+            <span aria-hidden="true">
+              →
+            </span>
+          </span>
         </a>
       }
     </div>

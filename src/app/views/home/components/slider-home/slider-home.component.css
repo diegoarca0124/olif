@@ -27,7 +27,7 @@ swiper-container {
 
   aspect-ratio: 16 / 5;
   background: #e9e8e2;
-  border-radius: clamp(16px, 1.5vw, 26px);
+  border-radius: 5px;
   box-shadow:
     0 24px 55px rgba(19, 43, 34, 0.08),
     0 5px 15px rgba(19, 43, 34, 0.05);

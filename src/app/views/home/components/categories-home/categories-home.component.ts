@@ -82,8 +82,8 @@ export class CategoriesHomeComponent {
       alt: 'Alimentos y productos nutricionales',
       colorClass: 'story-card--rose',
       link: '/productos/categoria/alimentos',
-      bg: '#ff0000',
-      color: '#fff'
+      bg: '#0067e5',
+      color: '#f6ecc8'
     }
   ];
 
