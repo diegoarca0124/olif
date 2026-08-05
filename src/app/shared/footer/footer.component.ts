@@ -20,82 +20,79 @@ gsap.registerPlugin(ScrollTrigger);
 export class FooterComponent implements AfterViewInit, OnDestroy {
   private context?: gsap.Context;
   private waveFrame?: number;
+  private waveObserver?: ResizeObserver;
   private waveStart = 0;
 
   constructor(private host: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
     const footer =
-      this.host.nativeElement.querySelector<HTMLElement>('.site-footer');
+      this.host.nativeElement.querySelector<HTMLElement>(
+        '.site-footer'
+      );
 
     const canvas =
       this.host.nativeElement.querySelector<HTMLCanvasElement>(
         '.site-footer__wave'
       );
 
-    if (!footer) return;
+    if (!footer || !canvas) return;
 
     document.body.style.paddingBottom = '';
 
-    if (canvas) {
-      this.startWave(canvas);
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
+    this.initializeWave(canvas);
 
     this.context = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: footer,
-          start: 'top 85%',
+          start: 'top 88%',
           once: true
         }
       });
 
       timeline
-        .from('.site-footer__newsletter-copy', {
-          y: 45,
+        .from('.site-footer__header', {
           opacity: 0,
-          duration: 0.85,
+          y: 35,
+          duration: 0.8,
           ease: 'power3.out'
         })
         .from(
           '.site-footer__divider',
           {
             scaleX: 0,
-            duration: 0.8,
+            duration: 0.75,
             ease: 'power3.inOut',
             transformOrigin: 'left center'
           },
           '-=0.4'
         )
         .from(
-          '.site-footer__identity, .site-footer__group',
+          '.site-footer__identity, .site-footer__column',
           {
-            y: 30,
             opacity: 0,
-            duration: 0.7,
-            stagger: 0.09,
+            y: 25,
+            duration: 0.65,
+            stagger: 0.1,
             ease: 'power3.out'
           },
-          '-=0.35'
+          '-=0.3'
         )
         .from(
           '.site-footer__bottom',
           {
-            y: 18,
             opacity: 0,
-            duration: 0.55,
+            y: 16,
+            duration: 0.5,
             ease: 'power2.out'
           },
-          '-=0.3'
+          '-=0.25'
         );
 
       gsap.to('.site-footer__glow', {
-        xPercent: 12,
-        yPercent: -8,
+        xPercent: 10,
+        yPercent: -7,
         ease: 'none',
         scrollTrigger: {
           trigger: footer,
@@ -105,140 +102,163 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
         }
       });
 
-      requestAnimationFrame(() => ScrollTrigger.refresh());
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
     }, footer);
   }
 
-  private startWave(canvas: HTMLCanvasElement): void {
-  const context = canvas.getContext('2d');
-  if (!context) return;
+  private initializeWave(
+    canvas: HTMLCanvasElement
+  ): void {
+    const context = canvas.getContext('2d');
 
-  const reducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches;
+    if (!context) return;
 
-  let width = 0;
-  let height = 0;
-  let pixelRatio = 1;
+    let width = 0;
+    let height = 0;
+    let pixelRatio = 1;
 
-  const resize = (): void => {
-    const rect = canvas.getBoundingClientRect();
+    const resizeCanvas = (): void => {
+      const bounds =
+        canvas.getBoundingClientRect();
 
-    width = rect.width;
-    height = rect.height;
-    pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(1, bounds.width);
+      height = Math.max(1, bounds.height);
 
-    const realWidth = Math.max(
-      1,
-      Math.round(width * pixelRatio)
-    );
-
-    const realHeight = Math.max(
-      1,
-      Math.round(height * pixelRatio)
-    );
-
-    if (
-      canvas.width !== realWidth ||
-      canvas.height !== realHeight
-    ) {
-      canvas.width = realWidth;
-      canvas.height = realHeight;
-
-      context.setTransform(
-        pixelRatio,
-        0,
-        0,
-        pixelRatio,
-        0,
-        0
+      pixelRatio = Math.min(
+        window.devicePixelRatio || 1,
+        2
       );
-    }
-  };
 
-  const getWaveY = (
-    x: number,
-    time: number
-  ): number => {
-    const base = height * 0.57;
-
-    const mainWave =
-      Math.sin(x * 0.0065 + time * 0.72) * 9;
-
-    const secondaryWave =
-      Math.sin(x * 0.0125 - time * 0.38) * 3;
-
-    const subtleMovement =
-      Math.sin(time * 0.55) * 1.5;
-
-    return (
-      base +
-      mainWave +
-      secondaryWave +
-      subtleMovement
-    );
-  };
-
-  const drawWave = (time: number): void => {
-    const resolution = 16;
-
-    context.beginPath();
-    context.moveTo(0, height);
-    context.lineTo(0, getWaveY(0, time));
-
-    for (let x = 0; x < width; x += resolution) {
-      const nextX = Math.min(x + resolution, width);
-      const controlX = x + resolution / 2;
-
-      const controlY =
-        (
-          getWaveY(x, time) +
-          getWaveY(nextX, time)
-        ) / 2;
-
-      context.quadraticCurveTo(
-        controlX,
-        controlY,
-        nextX,
-        getWaveY(nextX, time)
+      const physicalWidth = Math.max(
+        1,
+        Math.round(width * pixelRatio)
       );
-    }
 
-    context.lineTo(width, height);
-    context.lineTo(0, height);
-    context.closePath();
+      const physicalHeight = Math.max(
+        1,
+        Math.round(height * pixelRatio)
+      );
 
-    context.fillStyle = '#071b15';
-    context.fill();
-  };
+      if (
+        canvas.width !== physicalWidth ||
+        canvas.height !== physicalHeight
+      ) {
+        canvas.width = physicalWidth;
+        canvas.height = physicalHeight;
 
-  const render = (timestamp: number): void => {
-    if (!this.waveStart) {
-      this.waveStart = timestamp;
-    }
+        context.setTransform(
+          pixelRatio,
+          0,
+          0,
+          pixelRatio,
+          0,
+          0
+        );
+      }
+    };
 
-    resize();
+    const getWaveY = (
+      x: number,
+      time: number
+    ): number => {
+      const base = height * 0.55;
 
-    const time = reducedMotion
-      ? 0
-      : (timestamp - this.waveStart) / 1000;
+      const mainWave =
+        Math.sin(
+          x * 0.007 + time * 1.05
+        ) * 11;
 
-    context.clearRect(0, 0, width, height);
-    drawWave(time);
+      const detailWave =
+        Math.sin(
+          x * 0.014 - time * 0.58
+        ) * 3.5;
 
-    if (!reducedMotion) {
-      this.waveFrame = requestAnimationFrame(render);
-    }
-  };
+      const tide =
+        Math.sin(time * 0.7) * 2;
 
-  this.waveFrame = requestAnimationFrame(render);
-}
+      return (
+        base +
+        mainWave +
+        detailWave +
+        tide
+      );
+    };
+
+    const drawWave = (
+      time: number
+    ): void => {
+      context.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      context.beginPath();
+      context.moveTo(0, height);
+      context.lineTo(
+        0,
+        getWaveY(0, time)
+      );
+
+      for (
+        let x = 0;
+        x <= width + 4;
+        x += 4
+      ) {
+        context.lineTo(
+          x,
+          getWaveY(x, time)
+        );
+      }
+
+      context.lineTo(width, height);
+      context.lineTo(0, height);
+      context.closePath();
+
+      context.fillStyle = '#f6ecc8';
+      context.fill();
+    };
+
+    const animate = (
+      timestamp: number
+    ): void => {
+      if (!this.waveStart) {
+        this.waveStart = timestamp;
+      }
+
+      const elapsed =
+        (timestamp - this.waveStart) / 1000;
+
+      drawWave(elapsed);
+
+      this.waveFrame =
+        requestAnimationFrame(animate);
+    };
+
+    resizeCanvas();
+
+    this.waveObserver =
+      new ResizeObserver(() => {
+        resizeCanvas();
+      });
+
+    this.waveObserver.observe(canvas);
+
+    this.waveFrame =
+      requestAnimationFrame(animate);
+  }
 
   ngOnDestroy(): void {
-    if (this.waveFrame) {
-      cancelAnimationFrame(this.waveFrame);
+    if (this.waveFrame !== undefined) {
+      cancelAnimationFrame(
+        this.waveFrame
+      );
     }
 
+    this.waveObserver?.disconnect();
     this.context?.revert();
     document.body.style.paddingBottom = '';
   }
