@@ -3,7 +3,7 @@
 }
 
 .discover-section {
-  background: #fff7df;
+  background: #f7f1dc;
   padding: clamp(72px, 6vw, 128px) 0;
 }
 
@@ -38,12 +38,13 @@
 /* Botón */
 
 .discover-all {
+  font-family: "Gilroy Bold";
   align-items: center;
-  background: #e0eccc;
+  background: #fff;
   border-radius: 999px;
   color: #0a0a0a;
   display: inline-flex;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   justify-content: center;
   min-height: 42px;
@@ -53,11 +54,12 @@
   position: relative;
   text-decoration: none;
   transform: translateZ(0);
+  border: 2px solid #000;
 }
 
 .button-circle {
   aspect-ratio: 1;
-  background: #285f43;
+  background: #166c41;
   border-radius: 50%;
   left: 0;
   pointer-events: none;
@@ -84,7 +86,7 @@
 }
 
 .discover-all:focus-visible {
-  outline: 3px solid #285f43;
+  outline: 3px solid #166c41;
   outline-offset: 4px;
 }
 
@@ -140,18 +142,16 @@
 
 .story-content h3 {
   font-family: "Gilroy Bold", Arial, sans-serif;
-  font-size: clamp(11px, 1.3vw, 14px);
-  font-weight: 700;
+  font-size: clamp(15px, 1.5vw, 14px);
   letter-spacing: 1px;
   line-height: 1.08;
   margin: 0 auto;
   max-width: 15ch;
   overflow-wrap: anywhere;
-  text-transform: uppercase;
 }
 
 .story-card:focus-visible {
-  outline: 3px solid #285f43;
+  outline: 3px solid #166c41;
   outline-offset: 5px;
 }
 

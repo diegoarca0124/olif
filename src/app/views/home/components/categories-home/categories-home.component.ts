@@ -10,6 +10,8 @@ interface Category {
   image: string;
   alt: string;
   colorClass: string;
+  bg: string;
+  color: string;
   link: string;
 }
 
@@ -26,50 +28,62 @@ export class CategoriesHomeComponent {
     {
       id: 'vitaminas',
       name: 'Vitaminas',
-      image: '/categories/image-01.webp',
+      image: '/categories/image-01-transparent.png',
       alt: 'Vitaminas para el bienestar diario',
       colorClass: 'story-card--coral',
-      link: '/productos/categoria/vitaminas'
+      link: '/productos/categoria/vitaminas',
+      bg: '#116973',
+      color: '#f6ecc8'
     },
     {
       id: 'cereales-frutos-secos',
       name: 'Cereales & frutos secos',
-      image: '/categories/image-02.webp',
+      image: '/categories/image-02-transparent.png',
       alt: 'Selección de cereales y frutos secos',
       colorClass: 'story-card--blue',
-      link: '/productos/categoria/cereales-frutos-secos'
+      link: '/productos/categoria/cereales-frutos-secos',
+      bg: '#fed200',
+      color: '#0a0a0a'
     },
     {
       id: 'cuidado-diabetes',
       name: 'Cuidado de la diabetes',
-      image: '/categories/image-03.webp',
+      image: '/categories/image-03-transparent.png',
       alt: 'Productos para el cuidado de la diabetes',
       colorClass: 'story-card--purple',
-      link: '/productos/categoria/cuidado-diabetes'
+      link: '/productos/categoria/cuidado-diabetes',
+      bg: '#000',
+      color: '#f6ecc8'
     },
     {
       id: 'cuidado-personal',
       name: 'Cuidado personal',
-      image: '/categories/image-04.webp',
+      image: '/categories/image-04-transparent.png',
       alt: 'Productos naturales para el cuidado personal',
       colorClass: 'story-card--green',
-      link: '/productos/categoria/cuidado-personal'
+      link: '/productos/categoria/cuidado-personal',
+      bg: '#8ab1e6',
+      color: '#0a0a0a'
     },
     {
       id: 'limpieza',
       name: 'Limpieza',
-      image: '/categories/image-05.webp',
+      image: '/categories/image-05-transparent.png',
       alt: 'Productos para la limpieza del hogar',
       colorClass: 'story-card--aqua',
-      link: '/productos/categoria/limpieza'
+      link: '/productos/categoria/limpieza',
+      bg: '#f6ecc8',
+      color: '#0a0a0a'
     },
     {
       id: 'alimentos',
       name: 'Alimentos',
-      image: '/categories/image-06.webp',
+      image: '/categories/image-06-transparent.png',
       alt: 'Alimentos y productos nutricionales',
       colorClass: 'story-card--rose',
-      link: '/productos/categoria/alimentos'
+      link: '/productos/categoria/alimentos',
+      bg: '#ff0000',
+      color: '#fff'
     }
   ];
 

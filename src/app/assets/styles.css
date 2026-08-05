@@ -19,7 +19,20 @@
   font-family: "Gilroy Bold";
   src: url("/fonts/GilroyBold.ttf") format("truetype");
   font-style: normal;
-  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy Extra Bold";
+  src: url("/fonts/GilroyExtraBold.otf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy Medium";
+  src: url("/fonts/GilroyMedium.ttf") format("truetype");
+  font-style: normal;
   font-display: swap;
 }
 
@@ -78,7 +91,7 @@ a {
 }
 
 .main-nav {
-  background: #285f43;
+  background: #166c41;
   height: var(--nav-height);
   padding: 0;
   position: relative;
@@ -99,11 +112,9 @@ a {
 }
 
 .nav-links a {
-  font-size: 17px;
-  letter-spacing: .08em;
+  font-size: 15px;
   position: relative;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .nav-links a::after {
@@ -884,7 +895,6 @@ body {
 
 .page-layer {
   background: #f7f6f2;
-  box-shadow: 0 28px 80px rgba(8, 24, 18, 0.28);
   position: relative;
   z-index: 2;
 }
@@ -1088,9 +1098,9 @@ body {
 .nav-cart-count {
   align-items: center;
   background: #e0eccc;
-  border: 2px solid #285f43;
+  border: 2px solid #166c41;
   border-radius: 999px;
-  color: #285f43;
+  color: #166c41;
   display: flex;
   font-size: 9px;
   font-weight: 800;
@@ -1192,7 +1202,7 @@ body {
   background: #e7eadf;
   border: 0;
   border-radius: 50%;
-  color: #285f43;
+  color: #166c41;
   display: flex;
   font-size: 25px;
   height: 44px;
@@ -1232,7 +1242,7 @@ body {
   align-items: center;
   background: #e0eccc;
   border-radius: 50%;
-  color: #285f43;
+  color: #166c41;
   display: flex;
   font-size: 34px;
   height: 78px;
@@ -1257,7 +1267,7 @@ body {
 }
 
 .cart-empty__button {
-  background: #285f43;
+  background: #166c41;
   border: 0;
   border-radius: 999px;
   color: #ffffff;
@@ -1314,7 +1324,7 @@ body {
 .cart-item__controls button {
   background: transparent;
   border: 0;
-  color: #285f43;
+  color: #166c41;
   font-size: 16px;
   height: 28px;
   width: 30px;
@@ -1337,7 +1347,7 @@ body {
 }
 
 .cart-item__price {
-  color: #285f43;
+  color: #166c41;
   font-size: 13px;
   font-weight: 800;
   white-space: nowrap;
@@ -1366,7 +1376,7 @@ body {
 }
 
 .cart-drawer__subtotal strong {
-  color: #285f43;
+  color: #166c41;
   font-size: 22px;
 }
 
@@ -1378,7 +1388,7 @@ body {
 
 .cart-checkout {
   align-items: center;
-  background: #285f43;
+  background: #166c41;
   border: 0;
   border-radius: 999px;
   color: #ffffff;
