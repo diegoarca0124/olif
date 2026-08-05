@@ -106,7 +106,7 @@
 .product-card__tag {
   background: #e0eccc;
   border-radius: 999px;
-  color: #166c41;
+  color: #414f23;
   font-size: 10px;
   font-weight: 800;
   left: 14px;
@@ -191,7 +191,7 @@
 }
 
 .product-card__information h3 a:hover {
-  color: #166c41;
+  color: #414f23;
 }
 
 /* Formato */
@@ -207,7 +207,7 @@
 .product-card__format {
   background: #e0eccc;
   border-radius: 999px;
-  color: #166c41;
+  color: #414f23;
   display: inline-block;
   font-size: 10px;
   font-weight: 800;
@@ -235,7 +235,7 @@
 
 .product-card__footer button {
   align-items: center;
-  background: #166c41;
+  background: #414f23;
   border: 0;
   border-radius: 50%;
   color: #ffffff;

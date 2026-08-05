@@ -67,7 +67,7 @@
 
 .button-circle {
   aspect-ratio: 1;
-  background: #166c41;
+  background: #414f23;
   border-radius: 50%;
   left: 0;
   pointer-events: none;
@@ -96,7 +96,7 @@
 }
 
 .discover-all:focus-visible {
-  outline: 3px solid #166c41;
+  outline: 3px solid #414f23;
   outline-offset: 4px;
 }
 
@@ -252,7 +252,7 @@
 }
 
 .story-card:focus-visible {
-  outline: 3px solid #166c41;
+  outline: 3px solid #414f23;
   outline-offset: 5px;
 }
 

@@ -21,14 +21,14 @@ swiper-container {
   --swiper-pagination-bullet-inactive-color: #ffffff;
   --swiper-pagination-bullet-inactive-opacity: 0.55;
 
-  aspect-ratio: 16 / 5;
+  aspect-ratio: 16 / 6;
   background: #e9e8e2;
   box-shadow:
     0 24px 55px rgba(19, 43, 34, 0.08),
     0 5px 15px rgba(19, 43, 34, 0.05);
   display: block;
-  max-height: 500px;
-  min-height: 260px;
+  max-height: 620px;
+  min-height: 340px;
   overflow: hidden;
   width: 100%;
 }
@@ -57,8 +57,9 @@ swiper-slide {
   }
 
   swiper-container {
-    aspect-ratio: 16 / 6;
-    min-height: 450px;
+    aspect-ratio: 16 / 7;
+    max-height: 540px;
+    min-height: 400px;
   }
 }
 
@@ -73,9 +74,10 @@ swiper-slide {
   }
 
   swiper-container {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 9;
     border-radius: 16px;
-    min-height: 220px;
+    max-height: 440px;
+    min-height: 280px;
   }
 }
 
@@ -86,7 +88,8 @@ swiper-slide {
   }
 
   swiper-container {
-    aspect-ratio: 16 / 9;
-    min-height: 190px;
+    aspect-ratio: 4 / 3;
+    max-height: 380px;
+    min-height: 260px;
   }
 }

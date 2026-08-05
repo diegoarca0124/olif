@@ -1098,9 +1098,9 @@ body {
 .nav-cart-count {
   align-items: center;
   background: #e0eccc;
-  border: 2px solid #166c41;
+  border: 2px solid #414f23;
   border-radius: 999px;
-  color: #166c41;
+  color: #414f23;
   display: flex;
   font-size: 9px;
   font-weight: 800;
@@ -1202,7 +1202,7 @@ body {
   background: #e7eadf;
   border: 0;
   border-radius: 50%;
-  color: #166c41;
+  color: #414f23;
   display: flex;
   font-size: 25px;
   height: 44px;
@@ -1242,7 +1242,7 @@ body {
   align-items: center;
   background: #e0eccc;
   border-radius: 50%;
-  color: #166c41;
+  color: #414f23;
   display: flex;
   font-size: 34px;
   height: 78px;
@@ -1267,7 +1267,7 @@ body {
 }
 
 .cart-empty__button {
-  background: #166c41;
+  background: #414f23;
   border: 0;
   border-radius: 999px;
   color: #ffffff;
@@ -1324,7 +1324,7 @@ body {
 .cart-item__controls button {
   background: transparent;
   border: 0;
-  color: #166c41;
+  color: #414f23;
   font-size: 16px;
   height: 28px;
   width: 30px;
@@ -1347,7 +1347,7 @@ body {
 }
 
 .cart-item__price {
-  color: #166c41;
+  color: #414f23;
   font-size: 13px;
   font-weight: 800;
   white-space: nowrap;
@@ -1376,7 +1376,7 @@ body {
 }
 
 .cart-drawer__subtotal strong {
-  color: #166c41;
+  color: #414f23;
   font-size: 22px;
 }
 
@@ -1388,7 +1388,7 @@ body {
 
 .cart-checkout {
   align-items: center;
-  background: #166c41;
+  background: #414f23;
   border: 0;
   border-radius: 999px;
   color: #ffffff;
