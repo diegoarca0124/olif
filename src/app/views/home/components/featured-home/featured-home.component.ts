@@ -7,6 +7,7 @@ import {
   OnInit
 } from '@angular/core';
 import { gsap } from 'gsap';
+import { RouterLink } from '@angular/router';
 import { CartService } from '../../../../services/cart.service';
 import {
   ProductRow,
@@ -30,7 +31,7 @@ interface FeaturedProduct {
 
 @Component({
   selector: 'app-featured-home',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, RouterLink],
   templateUrl: './featured-home.component.html',
   styleUrl: './featured-home.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

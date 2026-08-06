@@ -1,1 +1,70 @@
-<p>index-products works!</p>
+<app-header></app-header>
+
+<main class="products-page">
+  <div class="products-page__container">
+    <header class="products-page__header">
+      <p>Explora el inventario</p>
+      <h1>Todos los productos</h1>
+      <span>Encuentra vitaminas, alimentos y productos para tu bienestar.</span>
+    </header>
+
+    @if (loading) {
+      <div class="products-page__status" aria-live="polite">Cargando productos...</div>
+    } @else if (errorMessage && products.length === 0) {
+      <div class="products-page__status products-page__status--error">{{ errorMessage }}</div>
+    } @else {
+      <section class="products-grid" aria-label="Lista de productos">
+        @for (product of products; track product.id) {
+          <article class="product-card">
+            <div class="product-card__image">
+              @if (product.label) {
+                <span class="product-card__label">{{ product.label }}</span>
+              }
+
+              <img [src]="product.cover" [alt]="product.name" loading="lazy">
+            </div>
+
+            <div class="product-card__content">
+              <p>{{ product.category }}</p>
+              <h2>{{ product.name }}</h2>
+
+              <div class="product-card__footer">
+                <strong>S/. {{ product.price | number:'1.2-2' }}</strong>
+
+                <div class="product-card__add-wrapper">
+                  <button
+                    type="button"
+                    class="product-card__add"
+                    [attr.aria-label]="'Agregar ' + product.name + ' al carrito'"
+                    (click)="addToCart(product)"
+                  >
+                    <ion-icon name="add-outline" aria-hidden="true"></ion-icon>
+                  </button>
+
+                  @if (cartQuantity(product.id) > 0) {
+                    <span class="product-card__quantity">{{ cartQuantity(product.id) }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+          </article>
+        }
+      </section>
+
+      @if (errorMessage) {
+        <p class="products-page__more-error">{{ errorMessage }}</p>
+      }
+
+      @if (hasMore) {
+        <div class="products-page__action">
+          <button type="button" class="products-page__more" [disabled]="loadingMore" (click)="showMore()">
+            {{ loadingMore ? 'Cargando...' : 'Mostrar 20 más' }}
+            <ion-icon name="arrow-down-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      }
+    }
+  </div>
+</main>
+
+<app-footer></app-footer>

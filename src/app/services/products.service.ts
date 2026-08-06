@@ -16,6 +16,11 @@ export interface ProductRow {
   label: string | null;
 }
 
+export interface ProductsPage {
+  products: ProductRow[];
+  hasMore: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,5 +47,26 @@ export class ProductsService {
     }
 
     return data ?? [];
+  }
+
+  async getProductsPage(offset: number, limit = 20): Promise<ProductsPage> {
+    const { data, error } = await this.supabase
+      .from('products')
+      .select('*')
+      .eq('status', true)
+      .order('id', { ascending: true })
+      .range(offset, offset + limit);
+
+    if (error) {
+      console.error('Error consultando productos:', error);
+      throw error;
+    }
+
+    const rows = data ?? [];
+
+    return {
+      products: rows.slice(0, limit),
+      hasMore: rows.length > limit
+    };
   }
 }
