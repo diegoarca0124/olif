@@ -164,3 +164,26 @@ swiper-slide {
     min-height: 260px;
   }
 }
+
+/* .slider-section {
+  background: #f7f6f2;
+  padding: var(--page-gutter) 0;
+  position: relative;
+}
+
+.slider-container {
+  margin-inline: auto;
+  max-width: 1600px;
+  padding-inline: var(--page-gutter);
+  position: relative;
+  width: 100%;
+}
+
+swiper-container {
+  aspect-ratio: 16 / 5;
+  border-radius: clamp(16px, 1.5vw, 24px);
+  display: block;
+  max-height: 480px;
+  overflow: hidden;
+  width: 100%;
+} */

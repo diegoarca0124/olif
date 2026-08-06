@@ -1,8 +1,4 @@
-<section
-  class="discover-section"
-  id="discover"
-  aria-labelledby="discoverTitle"
->
+<section class="discover-section" id="discover" aria-labelledby="discoverTitle">
   <div class="container-fluid">
     <div class="discover-heading">
       <div>
@@ -10,10 +6,7 @@
           Explora y descubre
         </p>
 
-        <h2
-          id="discoverTitle"
-          class="fw-700 text-gray-800"
-        >
+        <h2 id="discoverTitle" class="fw-700 text-gray-800">
           Nuestras <br>
           categorías
         </h2>
@@ -21,23 +14,26 @@
 
       <a
         routerLink="/productos"
-        class="discover-all js-circle-button"
+        class="categories__button"
+        (mouseenter)="showButtonEffect($event)"
+        (mouseleave)="hideButtonEffect($event)"
+        (focus)="showButtonEffect($event)"
+        (blur)="hideButtonEffect($event)"
       >
         <span
-          class="button-circle"
+          class="categories__button-fill"
           aria-hidden="true"
         ></span>
 
-        <span class="button-label">
+        <span class="categories__button-label">
           Ver todos
-
-          <span
-            class="button-arrow"
-            aria-hidden="true"
-          >
-            →
-          </span>
         </span>
+
+        <ion-icon
+          class="categories__button-arrow"
+          name="arrow-forward-outline"
+          aria-hidden="true"
+        ></ion-icon>
       </a>
     </div>
 

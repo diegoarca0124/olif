@@ -71,7 +71,6 @@
                   {{ product.name }}
                 </a>
               </h3>
-
               
 
               <div class="product-card__footer">
@@ -81,9 +80,20 @@
 
                 <button
                   type="button"
+                  class="product-card__add"
                   [attr.aria-label]="'Agregar ' + product.name"
+                  (mouseenter)="showAddButtonEffect($event)"
+                  (mouseleave)="hideAddButtonEffect($event)"
+                  (focus)="showAddButtonEffect($event)"
+                  (blur)="hideAddButtonEffect($event)"
                 >
+                  <span
+                    class="product-card__add-fill"
+                    aria-hidden="true"
+                  ></span>
+
                   <ion-icon
+                    class="product-card__add-icon"
                     name="add-outline"
                     aria-hidden="true"
                   ></ion-icon>

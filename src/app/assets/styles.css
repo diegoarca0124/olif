@@ -85,7 +85,7 @@ a {
 
 .announcement {
   align-items: center;
-  background: #000 !important;
+  background: #f6ecc8 !important;
   display: flex;
   font-weight: 500;
   height: var(--promo-height);
@@ -111,7 +111,7 @@ a {
 }
 
 .main-nav {
-  background: #414f23;
+  background: #000;
   height: var(--nav-height);
   padding: 0;
   position: relative;

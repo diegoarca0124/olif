@@ -42,7 +42,7 @@
 }
 
 .product-catalog__heading > p:last-child {
-  font-family: "Gilroy Regular", Arial, sans-serif;
+  font-family: "Gilroy Medium", Arial, sans-serif;
   color: #4b5563;
   font-size: clamp(15px, 1.1vw, 18px);
   line-height: 1.6;
@@ -236,32 +236,83 @@
   font-weight: 800;
 }
 
-.product-card__footer button {
+
+.product-card__add {
   align-items: center;
-  background: #414f23;
+  background: #94b7e8;
   border: 0;
   border-radius: 50%;
-  color: #ffffff;
+  color: #18372d;
   cursor: pointer;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 20px;
-  height: 30px;
+  height: 38px;
   justify-content: center;
-  transition:
-    background-color 0.25s ease,
-    transform 0.25s ease;
-  width: 30px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 38px;
+  will-change: transform;
+  border: 2px solid #000;
 }
 
-.product-card__footer button:hover {
-  background: #406957;
-  transform: scale(1.06);
+.product-card__add-fill {
+  background: #f6ecc8;
+  border-radius: 50%;
+  height: 18px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center;
+  width: 18px;
+  z-index: 0;
 }
 
-.product-card__footer button:focus-visible {
-  outline: 3px solid #e0eccc;
-  outline-offset: 3px;
+.product-card__add-icon {
+  color: #18372d;
+  font-size: 21px;
+  pointer-events: none;
+  position: relative;
+  will-change: color, transform;
+  z-index: 1;
+}
+
+.product-card__add:focus-visible {
+  outline: 3px solid rgba(224, 236, 204, 0.65);
+  outline-offset: 4px;
+}
+
+@media (max-width: 575.98px) {
+  .product-card__add {
+    height: 36px;
+    width: 36px;
+  }
+
+  .product-card__add-icon {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card__add {
+    transform: none !important;
+  }
+
+  .product-card__add-fill {
+    display: none;
+  }
+
+  .product-card__add-icon {
+    transform: none !important;
+  }
+}
+
+.product-card__footer button {
+  font-size: 18px;
+  height: 34px;
+  width: 34px;
 }
 
 /* Acción inferior */
@@ -274,7 +325,7 @@
 
 .featured__button {
   align-items: center;
-  background: #e0eccc;
+  background: #94b7e8;
   border-radius: 999px;
   color: #18372d;
   display: inline-flex;
@@ -290,6 +341,7 @@
   position: relative;
   text-decoration: none;
   will-change: transform;
+  border: 2px solid #000;
 }
 
 .featured__button-fill {

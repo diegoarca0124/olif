@@ -28,6 +28,7 @@ interface FeaturedProduct {
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class FeaturedHomeComponent {
+  private addButtonTimelines = new Map<HTMLElement, gsap.core.Timeline>();
   private readonly productsService = inject(ProductsService);
   private buttonTimeline?: gsap.core.Timeline;
   
@@ -74,6 +75,80 @@ export class FeaturedHomeComponent {
 
   ngOnDestroy(): void {
     this.buttonTimeline?.kill();
+
+    this.addButtonTimelines.forEach(timeline => {
+      timeline.kill();
+    });
+
+    this.addButtonTimelines.clear();
+  }
+
+  showAddButtonEffect(event: Event): void {
+    const button = event.currentTarget as HTMLElement;
+    const fill = button.querySelector<HTMLElement>('.product-card__add-fill');
+    const icon = button.querySelector<HTMLElement>('.product-card__add-icon');
+
+    if (!fill || !icon) return;
+
+    this.addButtonTimelines.get(button)?.kill();
+
+    const timeline = gsap.timeline();
+
+    timeline
+      .to(fill, {
+        scale: 4,
+        duration: 0.5,
+        ease: 'power3.inOut'
+      }, 0)
+      .to(icon, {
+        color: '#18372d',
+        rotate: 90,
+        scale: 1.08,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0.06)
+      .to(button, {
+        y: -2,
+        scale: 1.04,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0);
+
+    this.addButtonTimelines.set(button, timeline);
+  }
+
+  hideAddButtonEffect(event: Event): void {
+    const button = event.currentTarget as HTMLElement;
+    const fill = button.querySelector<HTMLElement>('.product-card__add-fill');
+    const icon = button.querySelector<HTMLElement>('.product-card__add-icon');
+
+    if (!fill || !icon) return;
+
+    this.addButtonTimelines.get(button)?.kill();
+
+    const timeline = gsap.timeline();
+
+    timeline
+      .to(fill, {
+        scale: 0,
+        duration: 0.4,
+        ease: 'power3.inOut'
+      }, 0)
+      .to(icon, {
+        color: '#18372d',
+        rotate: 0,
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      }, 0)
+      .to(button, {
+        y: 0,
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      }, 0);
+
+    this.addButtonTimelines.set(button, timeline);
   }
 
   private mapProduct(row: ProductRow): FeaturedProduct {

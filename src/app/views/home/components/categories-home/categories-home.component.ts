@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { gsap } from 'gsap';
 
@@ -18,7 +18,8 @@ interface Category {
   selector: 'app-categories-home',
   imports: [RouterModule],
   templateUrl: './categories-home.component.html',
-  styleUrl: './categories-home.component.css'
+  styleUrl: './categories-home.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
   categories: Category[] = [
@@ -92,19 +93,82 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
 
   private context?: gsap.Context;
   private events = new AbortController();
+  private buttonTimeline?: gsap.core.Timeline;
 
   constructor(private host: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
     this.context = gsap.context(() => {
       this.initializeCardHover();
-      this.initializeButtonHover();
     }, this.host.nativeElement);
   }
 
-  ngOnDestroy(): void {
-    this.events.abort();
-    this.context?.revert();
+  showButtonEffect(event: Event): void {
+    const button = event.currentTarget as HTMLElement;
+    const fill = button.querySelector<HTMLElement>('.categories__button-fill');
+    const label = button.querySelector<HTMLElement>('.categories__button-label');
+    const arrow = button.querySelector<HTMLElement>('.categories__button-arrow');
+
+    if (!fill || !label || !arrow) return;
+
+    this.buttonTimeline?.kill();
+    this.buttonTimeline = gsap.timeline();
+
+    this.buttonTimeline
+      .to(fill, {
+        scale: 5.5,
+        duration: 0.55,
+        ease: 'power3.inOut'
+      }, 0)
+      .to(label, {
+        color: '#18372d',
+        duration: 0.25
+      }, 0.08)
+      .to(arrow, {
+        color: '#18372d',
+        x: 5,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0.08)
+      .to(button, {
+        y: -2,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, 0);
+  }
+
+  hideButtonEffect(event: Event): void {
+    const button = event.currentTarget as HTMLElement;
+    const fill = button.querySelector<HTMLElement>('.categories__button-fill');
+    const label = button.querySelector<HTMLElement>('.categories__button-label');
+    const arrow = button.querySelector<HTMLElement>('.categories__button-arrow');
+
+    if (!fill || !label || !arrow) return;
+
+    this.buttonTimeline?.kill();
+    this.buttonTimeline = gsap.timeline();
+
+    this.buttonTimeline
+      .to(fill, {
+        scale: 0,
+        duration: 0.45,
+        ease: 'power3.inOut'
+      }, 0)
+      .to(label, {
+        color: '#18372d',
+        duration: 0.25
+      }, 0)
+      .to(arrow, {
+        color: '#18372d',
+        x: 0,
+        duration: 0.3,
+        ease: 'power2.out'
+      }, 0)
+      .to(button, {
+        y: 0,
+        duration: 0.3,
+        ease: 'power2.out'
+      }, 0);
   }
 
   private initializeCardHover(): void {
@@ -120,204 +184,49 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
 
       if (!image) return;
 
-      card.addEventListener(
-        'pointerenter',
-        () => {
-          gsap.timeline({
-            defaults: {
-              overwrite: 'auto',
-              ease: 'power3.out'
-            }
-          })
-            .to(
-              image,
-              {
-                scale: 1.2,
-                duration: 0.55
-              },
-              0
-            )
-            .to(
-              arrow,
-              {
-                x: 4,
-                duration: 0.35
-              },
-              0.04
-            );
-        },
-        {
-          signal: this.events.signal
-        }
-      );
+      card.addEventListener('pointerenter', () => {
+        gsap.timeline({
+          defaults: {
+            overwrite: 'auto',
+            ease: 'power3.out'
+          }
+        })
+          .to(image, {
+            scale: 1.2,
+            duration: 0.55
+          }, 0)
+          .to(arrow, {
+            x: 4,
+            duration: 0.35
+          }, 0.04);
+      }, {
+        signal: this.events.signal
+      });
 
-      card.addEventListener(
-        'pointerleave',
-        () => {
-          gsap.timeline({
-            defaults: {
-              overwrite: 'auto',
-              ease: 'power3.out'
-            }
-          })
-            .to(
-              image,
-              {
-                scale: 1,
-                duration: 0.6
-              },
-              0
-            )
-            .to(
-              arrow,
-              {
-                x: 0,
-                duration: 0.35
-              },
-              0
-            );
-        },
-        {
-          signal: this.events.signal
-        }
-      );
+      card.addEventListener('pointerleave', () => {
+        gsap.timeline({
+          defaults: {
+            overwrite: 'auto',
+            ease: 'power3.out'
+          }
+        })
+          .to(image, {
+            scale: 1,
+            duration: 0.6
+          }, 0)
+          .to(arrow, {
+            x: 0,
+            duration: 0.35
+          }, 0);
+      }, {
+        signal: this.events.signal
+      });
     });
   }
 
-  private initializeButtonHover(): void {
-    const button =
-      this.host.nativeElement.querySelector<HTMLElement>(
-        '.js-circle-button'
-      );
-
-    const circle =
-      button?.querySelector<HTMLElement>(
-        '.button-circle'
-      );
-
-    const label =
-      button?.querySelector<HTMLElement>(
-        '.button-label'
-      );
-
-    const arrow =
-      button?.querySelector<HTMLElement>(
-        '.button-arrow'
-      );
-
-    if (!button || !circle || !label || !arrow) return;
-
-    const getPointerPosition = (event: PointerEvent) => {
-      const bounds = button.getBoundingClientRect();
-
-      return {
-        x: event.clientX - bounds.left,
-        y: event.clientY - bounds.top
-      };
-    };
-
-    button.addEventListener(
-      'pointerenter',
-      event => {
-        const { x, y } = getPointerPosition(event);
-
-        gsap.set(circle, {
-          left: x,
-          top: y
-        });
-
-        gsap.timeline({
-          defaults: {
-            overwrite: 'auto'
-          }
-        })
-          .to(
-            circle,
-            {
-              scale: 1,
-              duration: 0.4,
-              ease: 'power2.out'
-            },
-            0
-          )
-          .to(
-            label,
-            {
-              color: '#ffffff',
-              duration: 0.2
-            },
-            0.05
-          )
-          .to(
-            arrow,
-            {
-              x: 4,
-              duration: 0.3,
-              ease: 'power3.out'
-            },
-            0
-          );
-      },
-      {
-        signal: this.events.signal
-      }
-    );
-
-    button.addEventListener(
-      'pointermove',
-      event => {
-        const { x, y } = getPointerPosition(event);
-
-        gsap.to(circle, {
-          left: x,
-          top: y,
-          duration: 0.25,
-          ease: 'power2.out',
-          overwrite: 'auto'
-        });
-      },
-      {
-        signal: this.events.signal
-      }
-    );
-
-    button.addEventListener(
-      'pointerleave',
-      () => {
-        gsap.timeline({
-          defaults: {
-            overwrite: 'auto'
-          }
-        })
-          .to(
-            circle,
-            {
-              scale: 0,
-              duration: 0.3,
-              ease: 'power2.in'
-            },
-            0
-          )
-          .to(
-            label,
-            {
-              color: '#0a0a0a',
-              duration: 0.2
-            },
-            0
-          )
-          .to(
-            arrow,
-            {
-              x: 0,
-              duration: 0.25
-            },
-            0
-          );
-      },
-      {
-        signal: this.events.signal
-      }
-    );
+  ngOnDestroy(): void {
+    this.events.abort();
+    this.buttonTimeline?.kill();
+    this.context?.revert();
   }
 }
