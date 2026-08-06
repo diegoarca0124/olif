@@ -14,16 +14,22 @@
       </h2>
 
       <p>
-        Productos seleccionados para acompañar tu bienestar todos los días.
+        Productos seleccionados para acompañar tu bienestar
+        todos los días.
       </p>
     </header>
 
     @if (loading) {
-      <div class="product-catalog__status" aria-live="polite">
+      <div
+        class="product-catalog__status"
+        aria-live="polite"
+      >
         Cargando productos...
       </div>
     } @else if (errorMessage) {
-      <div class="product-catalog__status product-catalog__status--error">
+      <div
+        class="product-catalog__status product-catalog__status--error"
+      >
         {{ errorMessage }}
       </div>
     } @else {
@@ -48,7 +54,10 @@
                 loading="lazy"
               >
 
-              @if (product.flag === '/flags/united-states.svg') {
+              @if (
+                product.flag ===
+                '/flags/united-states.svg'
+              ) {
                 <span
                   class="product-card__country-flag"
                   aria-label="Producto de Estados Unidos"
@@ -67,37 +76,49 @@
               </p>
 
               <h3>
-                <a [href]="product.link" >
+                <a [href]="product.link">
                   {{ product.name }}
                 </a>
               </h3>
-              
 
               <div class="product-card__footer">
                 <span>
                   S/. {{ product.price | number:'1.2-2' }}
                 </span>
 
-                <button
-                  type="button"
-                  class="product-card__add"
-                  [attr.aria-label]="'Agregar ' + product.name"
-                  (mouseenter)="showAddButtonEffect($event)"
-                  (mouseleave)="hideAddButtonEffect($event)"
-                  (focus)="showAddButtonEffect($event)"
-                  (blur)="hideAddButtonEffect($event)"
-                >
-                  <span
-                    class="product-card__add-fill"
-                    aria-hidden="true"
-                  ></span>
+                <div class="product-card__add-wrapper">
+                  <button
+                    type="button"
+                    class="product-card__add"
+                    [class.has-items]="cartQuantity(product.id) > 0"
+                    [attr.aria-label]="'Agregar ' + product.name + ' al carrito'"
+                    (click)="addToCart(product, $event)"
+                    (mouseenter)="showAddButtonEffect($event)"
+                    (mouseleave)="hideAddButtonEffect($event)"
+                    (focus)="showAddButtonEffect($event)"
+                    (blur)="hideAddButtonEffect($event)"
+                  >
+                    <span
+                      class="product-card__add-fill"
+                      aria-hidden="true"
+                    ></span>
 
-                  <ion-icon
-                    class="product-card__add-icon"
-                    name="add-outline"
-                    aria-hidden="true"
-                  ></ion-icon>
-                </button>
+                    <ion-icon
+                      class="product-card__add-icon"
+                      name="add-outline"
+                      aria-hidden="true"
+                    ></ion-icon>
+                  </button>
+
+                  @if (cartQuantity(product.id) > 0) {
+                    <span
+                      class="product-card__cart-quantity"
+                      [attr.aria-label]="cartQuantity(product.id) + ' unidades en el carrito'"
+                    >
+                      {{ cartQuantity(product.id) }}
+                    </span>
+                  }
+                </div>
               </div>
             </div>
           </article>
@@ -105,10 +126,28 @@
       </div>
 
       <div class="featured__action">
-        <a href="/productos" class="featured__button" (mouseenter)="showButtonEffect($event)" (mouseleave)="hideButtonEffect($event)" (focus)="showButtonEffect($event)" (blur)="hideButtonEffect($event)">
-          <span class="featured__button-fill" aria-hidden="true"></span>
-          <span class="featured__button-label">Ver todos</span>
-          <ion-icon class="featured__button-arrow" name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+        <a
+          href="/productos"
+          class="featured__button"
+          (mouseenter)="showButtonEffect($event)"
+          (mouseleave)="hideButtonEffect($event)"
+          (focus)="showButtonEffect($event)"
+          (blur)="hideButtonEffect($event)"
+        >
+          <span
+            class="featured__button-fill"
+            aria-hidden="true"
+          ></span>
+
+          <span class="featured__button-label">
+            Ver todos
+          </span>
+
+          <ion-icon
+            class="featured__button-arrow"
+            name="arrow-forward-outline"
+            aria-hidden="true"
+          ></ion-icon>
         </a>
       </div>
     }

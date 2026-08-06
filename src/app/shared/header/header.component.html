@@ -1,11 +1,19 @@
 <div class="page-layer">
   <div class="announcement">
-    <p class="text-uppercase" style="letter-spacing: 0.15em;font-size: 0.65rem;">
-      <strong>Envío gratis</strong> en compras desde <strong>S/ 70</strong>
+    <p
+      class="text-uppercase"
+      style="letter-spacing: 0.15em; font-size: 0.65rem;"
+    >
+      <strong>Envío gratis</strong>
+      en compras desde
+      <strong>S/ 70</strong>
     </p>
   </div>
 
-  <nav class="navbar navbar-expand-lg main-nav" aria-label="Navegación principal">
+  <nav
+    class="navbar navbar-expand-lg main-nav"
+    aria-label="Navegación principal"
+  >
     <div class="container-fluid nav-shell">
       <button
         class="navbar-toggler menu-button"
@@ -20,26 +28,59 @@
         <span></span>
       </button>
 
-      <div class="collapse navbar-collapse nav-links" id="mainMenu">
+      <div
+        class="collapse navbar-collapse nav-links"
+        id="mainMenu"
+      >
         <a href="#discover">Categorías</a>
         <a href="#shop">Productos</a>
-        <a href="#about">Acerca de</a>
       </div>
 
-      <a class="brand" href="#" aria-label="Nourish, inicio" style="color: #fff; letter-spacing: 0.5px;">
+      <a
+        class="brand"
+        href="#"
+        aria-label="Olif, inicio"
+        style="color: #fff; letter-spacing: 0.5px;"
+      >
         Olif.<sup>®</sup>
       </a>
 
       <div class="nav-actions">
-        <button class="nav-cart-button">
-          <img src="/icons/search-outline-thicker.svg" alt="" class="h-25px w-25px">
+        <button
+          class="nav-cart-button"
+          type="button"
+          aria-label="Buscar productos"
+        >
+          <img
+            src="/icons/search-outline-thicker.svg"
+            alt=""
+            class="h-25px w-25px"
+          >
         </button>
-        <button class="nav-cart-button js-cart-open" type="button" aria-label="Abrir carrito de compras" (click)="cart.open()">
-          <img src="/icons/bag-handle-outline-thicker.svg" alt="" class="h-25px w-25px">
-          <span class="nav-cart-count" aria-live="polite">0</span>
+
+        <button
+          class="nav-cart-button js-cart-open"
+          type="button"
+          aria-label="Abrir carrito de compras"
+          (click)="cart.open()"
+        >
+          <img
+            src="/icons/bag-handle-outline-thicker.svg"
+            alt=""
+            class="h-25px w-25px"
+          >
+
+          <span
+            class="nav-cart-count"
+            [class.has-items]="cartCount() > 0"
+            aria-live="polite"
+          >
+            {{ cartCount() }}
+          </span>
         </button>
       </div>
     </div>
-</nav>
+  </nav>
+</div>
 
 <app-cart #cart></app-cart>

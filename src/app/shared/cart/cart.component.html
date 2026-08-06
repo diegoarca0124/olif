@@ -38,52 +38,112 @@
     </header>
 
     <div class="cart-drawer__body">
-      <div class="cart-empty">
-        <span aria-hidden="true">
-          <ion-icon name="bag-handle-outline"></ion-icon>
-        </span>
+      @if (items().length === 0) {
+        <div class="cart-empty">
+          <span aria-hidden="true">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+          </span>
 
-        <h3>Tu carrito está vacío</h3>
+          <h3>Tu carrito está vacío</h3>
+
+          <p>
+            Explora nuestros productos y agrega tus favoritos.
+          </p>
+
+          <button
+            class="cart-empty__button"
+            type="button"
+            (click)="goToProducts()"
+          >
+            Ver productos
+          </button>
+        </div>
+      } @else {
+        <div
+          class="cart-items"
+          aria-live="polite"
+        >
+          @for (item of items(); track item.id) {
+            <article class="cart-item">
+              <img
+                class="cart-item__image"
+                [src]="item.image"
+                [alt]="item.name"
+              >
+
+              <div class="cart-item__copy">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.category }}</p>
+
+                <div
+                  class="cart-item__controls"
+                  [attr.aria-label]="'Cantidad de ' + item.name"
+                >
+                  <button
+                    type="button"
+                    [attr.aria-label]="'Disminuir ' + item.name"
+                    (click)="decrease(item.id)"
+                  >
+                    −
+                  </button>
+
+                  <span>{{ item.quantity }}</span>
+
+                  <button
+                    type="button"
+                    [attr.aria-label]="'Aumentar ' + item.name"
+                    (click)="increase(item.id)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="cart-item__aside">
+                <strong class="cart-item__price">
+                  S/. {{ item.price * item.quantity | number:'1.2-2' }}
+                </strong>
+
+                <button
+                  class="cart-item__remove"
+                  type="button"
+                  [attr.aria-label]="'Eliminar ' + item.name"
+                  (click)="remove(item.id)"
+                >
+                  <ion-icon
+                    name="trash-outline"
+                    aria-hidden="true"
+                  ></ion-icon>
+                </button>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </div>
+
+    @if (items().length > 0) {
+      <footer class="cart-drawer__footer">
+        <div class="cart-drawer__subtotal">
+          <span>Subtotal</span>
+
+          <strong>
+            S/. {{ subtotal() | number:'1.2-2' }}
+          </strong>
+        </div>
 
         <p>
-          Explora nuestros productos y agrega tus favoritos.
+          El costo de envío se calcula al finalizar la compra.
         </p>
 
         <button
-          class="cart-empty__button"
+          class="cart-checkout"
           type="button"
-          (click)="goToProducts()"
         >
-          Ver productos
+          Continuar compra
+          <span aria-hidden="true">→</span>
         </button>
-      </div>
-
-      <div
-        class="cart-items"
-        aria-live="polite"
-      ></div>
-    </div>
-
-    <footer
-      class="cart-drawer__footer"
-      hidden
-    >
-      <div class="cart-drawer__subtotal">
-        <span>Subtotal</span>
-        <strong>S/. 0.00</strong>
-      </div>
-
-      <p>
-        El costo de envío se calcula al finalizar la compra.
-      </p>
-
-      <button
-        class="cart-checkout"
-        type="button"
-      >
-        Continuar compra
-        <span aria-hidden="true">→</span>
-      </button>
-    </footer>
+      </footer>
+    }
   </section>
 </aside>

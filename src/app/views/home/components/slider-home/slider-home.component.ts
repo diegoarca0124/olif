@@ -21,7 +21,7 @@ interface SliderItem {
 export class SliderHomeComponent {
   slides: SliderItem[] = [
     {
-      image: 'https://images.unsplash.com/photo-1611073061835-e77b1b16d3f3?q=80&w=1742&auto=format&fit=crop',
+      image: '/banner-01.jpeg',
       alt: 'Vitaminas y suplementos'
     },
     {
