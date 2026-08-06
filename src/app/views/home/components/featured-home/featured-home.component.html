@@ -67,7 +67,7 @@
               </p>
 
               <h3>
-                <a [href]="product.link" class="text-uppercase">
+                <a [href]="product.link" >
                   {{ product.name }}
                 </a>
               </h3>
@@ -94,15 +94,12 @@
         }
       </div>
 
-      <div class="d-flex justify-content-center">
-        <a
-            href="/productos"
-            class="discover-all"
-          >
-            <span class="button-label">
-              Ver todos
-            </span>
-          </a>
+      <div class="featured__action">
+        <a href="/productos" class="featured__button" (mouseenter)="showButtonEffect($event)" (mouseleave)="hideButtonEffect($event)" (focus)="showButtonEffect($event)" (blur)="hideButtonEffect($event)">
+          <span class="featured__button-fill" aria-hidden="true"></span>
+          <span class="featured__button-label">Ver todos</span>
+          <ion-icon class="featured__button-arrow" name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+        </a>
       </div>
     }
   </div>

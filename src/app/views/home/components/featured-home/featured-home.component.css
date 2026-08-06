@@ -42,6 +42,7 @@
 }
 
 .product-catalog__heading > p:last-child {
+  font-family: "Gilroy Regular", Arial, sans-serif;
   color: #4b5563;
   font-size: clamp(15px, 1.1vw, 18px);
   line-height: 1.6;
@@ -173,15 +174,16 @@
 /* Títulos uniformes */
 
 .product-card__information h3 {
-  font-size: clamp(12px, 1vw, 21px);
+
+  font-size: clamp(12px, 1.1vw, 21px);
   font-weight: 800;
   line-height: 1.25;
   margin: 0;
   min-height: 2.5em;
-  letter-spacing: 0.07em;
 }
 
 .product-card__information h3 a {
+  font-family: "Gilroy Bold", Arial, sans-serif;
   color: #1f2937;
   display: -webkit-box;
   overflow: hidden;
@@ -264,15 +266,75 @@
 
 /* Acción inferior */
 
-.discover-all {
+.featured__action {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.featured__button {
+  align-items: center;
+  background: #e0eccc;
+  border-radius: 999px;
+  color: #18372d;
+  display: inline-flex;
   font-family: "Gilroy Bold", Arial, sans-serif;
-  font-size: clamp(15px, 1.3vw, 17px);
+  font-size: 13px;
+  font-weight: 800;
+  gap: 13px;
+  justify-content: center;
   margin-top: clamp(50px, 5vw, 80px);
+  min-height: 48px;
+  overflow: hidden;
+  padding: 12px 19px;
+  position: relative;
   text-decoration: none;
-  background: #414f23;
-  padding: 1rem 1.75rem;
-  border-radius: 1.25rem;
-  color: #ffffff;
+  will-change: transform;
+}
+
+.featured__button-fill {
+  background: #f6ecc8;
+  border-radius: 50%;
+  height: 34px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center;
+  width: 34px;
+  z-index: 0;
+}
+
+.featured__button-label {
+  color: #18372d;
+  position: relative;
+  z-index: 1;
+}
+
+.featured__button-arrow {
+  color: #18372d;
+  flex: 0 0 auto;
+  font-size: 18px;
+  position: relative;
+  will-change: transform;
+  z-index: 1;
+}
+
+.featured__button:focus-visible {
+  outline: 3px solid rgba(224, 236, 204, 0.35);
+  outline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured__button {
+    transform: none !important;
+  }
+
+  .featured__button-fill,
+  .featured__button-arrow {
+    transition: none;
+  }
 }
 
 /* Cuatro productos */
