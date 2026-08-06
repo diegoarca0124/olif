@@ -239,7 +239,7 @@
 
 .product-card__add {
   align-items: center;
-  background: #94b7e8;
+  background: #E2A1AE;
   border: 0;
   border-radius: 50%;
   color: #18372d;
@@ -253,7 +253,6 @@
   position: relative;
   width: 38px;
   will-change: transform;
-  border: 2px solid #000;
 }
 
 .product-card__add-fill {
@@ -325,7 +324,7 @@
 
 .featured__button {
   align-items: center;
-  background: #94b7e8;
+  background: #E2A1AE;
   border-radius: 999px;
   color: #18372d;
   display: inline-flex;
@@ -341,7 +340,6 @@
   position: relative;
   text-decoration: none;
   will-change: transform;
-  border: 2px solid #000;
 }
 
 .featured__button-fill {

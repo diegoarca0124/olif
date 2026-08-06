@@ -31,7 +31,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Vitaminas para el bienestar diario',
       colorClass: 'story-card--coral',
       link: '/productos/categoria/vitaminas',
-      bg: '#116973',
+      bg: '#2B4735',
       color: '#f6ecc8'
     },
     {
@@ -53,7 +53,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Productos para el cuidado de la diabetes',
       colorClass: 'story-card--purple',
       link: '/productos/categoria/cuidado-diabetes',
-      bg: '#000000',
+      bg: '#BF8F67',
       color: '#f6ecc8'
     },
     {
@@ -64,7 +64,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Productos naturales para el cuidado personal',
       colorClass: 'story-card--green',
       link: '/productos/categoria/cuidado-personal',
-      bg: '#8ab1e6',
+      bg: '#E2A1AE',
       color: '#0a0a0a'
     },
     {
@@ -86,7 +86,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Alimentos y productos nutricionales',
       colorClass: 'story-card--rose',
       link: '/productos/categoria/alimentos',
-      bg: '#0067e5',
+      bg: '#9A9E66',
       color: '#f6ecc8'
     }
   ];

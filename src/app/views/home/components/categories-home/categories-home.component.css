@@ -39,7 +39,7 @@
 
 .categories__button {
   align-items: center;
-  background: #94b7e8;
+  background: #E2A1AE;
   border-radius: 999px;
   color: #18372d;
   display: inline-flex;
@@ -54,7 +54,6 @@
   position: relative;
   text-decoration: none;
   will-change: transform;
-  border: 2px solid #000;
 }
 
 .categories__button-fill {
