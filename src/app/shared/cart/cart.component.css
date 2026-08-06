@@ -214,6 +214,7 @@
 }
 
 .cart-item__copy h3 {
+  font-family: "Gilroy Bold", Arial, sans-serif;
   color: #1f2937;
   font-size: 14px;
   font-weight: 800;
@@ -222,6 +223,7 @@
 }
 
 .cart-item__copy > p {
+  font-family: "Gilroy Medium", Arial, sans-serif;
   color: #7b827d;
   font-size: 11px;
   margin: 0 0 12px;
@@ -261,7 +263,8 @@
 }
 
 .cart-item__price {
-  color: #414f23;
+  font-family: "Gilroy Bold", Arial, sans-serif;
+  color: #20201f;
   font-size: 13px;
   font-weight: 800;
   white-space: nowrap;
@@ -282,6 +285,7 @@
 }
 
 .cart-drawer__subtotal {
+  font-family: "Gilroy Bold", Arial, sans-serif;
   align-items: center;
   color: #1f2937;
   display: flex;
@@ -302,7 +306,7 @@
 
 .cart-checkout {
   align-items: center;
-  background: #414f23;
+  background: #969a63;
   border: 0;
   border-radius: 999px;
   color: #ffffff;

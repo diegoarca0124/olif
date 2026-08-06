@@ -267,7 +267,7 @@ export class CategoryProductsComponent
       .to(
         icon,
         {
-          color: '#18372d',
+          color: '#ffffff',
           rotate: 0,
           scale: 1,
           duration: 0.3,
