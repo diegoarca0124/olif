@@ -11,33 +11,83 @@
   </div>
 
   <nav
-    class="navbar navbar-expand-lg main-nav"
+    class="navbar main-nav"
     aria-label="Navegación principal"
   >
     <div class="container-fluid nav-shell">
       <button
-        class="navbar-toggler menu-button"
+        class="mobile-menu-button"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainMenu"
-        aria-controls="mainMenu"
-        aria-expanded="false"
+        [class.is-open]="mobileMenuOpen"
+        [attr.aria-expanded]="mobileMenuOpen"
         aria-label="Abrir menú"
+        (click)="toggleMobileMenu()"
       >
         <span></span>
         <span></span>
       </button>
 
-      <div
-        class="collapse navbar-collapse nav-links"
-        id="mainMenu"
-      >
-        <a [routerLink]="'/products'">Productos</a>
+      <div class="desktop-navigation">
+        <a [routerLink]="'/products'">
+          Productos
+        </a>
+
+        <div class="desktop-category-control">
+          <button
+            class="desktop-category-button"
+            type="button"
+            [class.is-open]="desktopCategoriesOpen"
+            [attr.aria-expanded]="desktopCategoriesOpen"
+            aria-controls="desktopCategoriesMenu"
+            (click)="toggleDesktopCategories($event)"
+          >
+            Categorías
+
+            <ion-icon
+              name="chevron-down-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </button>
+
+          <div
+            #desktopCategories
+            id="desktopCategoriesMenu"
+            class="desktop-categories"
+          >
+            @for (category of categories; track category.slug) {
+              <a
+                class="desktop-category-link"
+                [routerLink]="[
+                  '/products/category',
+                  category.slug
+                ]"
+                (click)="closeAfterNavigation()"
+              >
+                <span class="desktop-category-image">
+                  <img
+                    [src]="category.image"
+                    [alt]="category.name"
+                  >
+                </span>
+
+                <span class="category-text">
+                  <span class="category-name">{{ category.name }}</span>
+                  <small class="category-description">{{ category.description }}</small>
+                </span>
+
+                <ion-icon
+                  class="desktop-category-arrow"
+                  name="arrow-forward-outline"
+                  aria-hidden="true"
+                ></ion-icon>
+              </a>
+            }
+          </div>
+        </div>
       </div>
 
       <a
         class="brand"
-        href="#"
         aria-label="Olif, inicio"
         style="color: #fff; letter-spacing: 0.5px;"
         [routerLink]="'/'"
@@ -82,5 +132,117 @@
     </div>
   </nav>
 </div>
+
+<div
+  #mobileBackdrop
+  class="mobile-backdrop"
+  [attr.aria-hidden]="!mobileMenuOpen"
+  (click)="closeMobileMenu()"
+></div>
+
+<aside
+  #mobileDrawer
+  class="mobile-drawer"
+  [attr.aria-hidden]="!mobileMenuOpen"
+  aria-label="Menú de navegación"
+>
+  <div class="mobile-drawer-header">
+    <a
+      class="mobile-drawer-brand"
+      [routerLink]="'/'"
+      (click)="closeAfterNavigation()"
+    >
+      Olif.<sup>®</sup>
+    </a>
+
+    <button
+      class="mobile-close-button"
+      type="button"
+      aria-label="Cerrar menú"
+      (click)="closeMobileMenu()"
+    >
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+  </div>
+
+  <div class="mobile-drawer-content">
+    <nav class="mobile-navigation">
+      <a
+        class="mobile-main-link mobile-animate"
+        [routerLink]="'/'"
+        (click)="closeAfterNavigation()"
+      >
+        <span>Inicio</span>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </a>
+
+      <a
+        class="mobile-main-link mobile-animate"
+        [routerLink]="'/products'"
+        (click)="closeAfterNavigation()"
+      >
+        <span>Productos</span>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </a>
+
+      <button
+        class="mobile-main-link mobile-categories-button mobile-animate"
+        type="button"
+        [class.is-open]="mobileCategoriesOpen"
+        [attr.aria-expanded]="mobileCategoriesOpen"
+        (click)="toggleMobileCategories()"
+      >
+        <span>Categorías</span>
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </button>
+
+      <div
+        #mobileCategories
+        class="mobile-categories"
+      >
+        @for (category of categories; track category.slug) {
+          <a
+            class="mobile-category-link"
+            [routerLink]="[
+              '/products/category',
+              category.slug
+            ]"
+            (click)="closeAfterNavigation()"
+          >
+            <span class="mobile-category-image">
+              <img
+                [src]="category.image"
+                [alt]="category.name"
+              >
+            </span>
+
+            <span class="mobile-category-name">
+              {{ category.name }}
+            </span>
+
+            <ion-icon
+              class="mobile-category-arrow"
+              name="arrow-forward-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </a>
+        }
+      </div>
+    </nav>
+  </div>
+
+  <div class="mobile-drawer-footer mobile-animate">
+    <p>Bienestar para todos los días.</p>
+
+    <a
+      href="https://wa.me/51900000000"
+      target="_blank"
+      rel="noopener"
+    >
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      Escríbenos
+    </a>
+  </div>
+</aside>
 
 <app-cart #cart></app-cart>
