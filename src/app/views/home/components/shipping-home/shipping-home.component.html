@@ -1,110 +1,70 @@
 <section
-    class="coverage-section"
-    aria-labelledby="coverageTitle"
-  >
-    <div class="coverage-decoration" aria-hidden="true">
-      <span></span>
-      <span></span>
+  class="shipping"
+  aria-labelledby="shippingTitle"
+>
+  <div class="shipping__container">
+    <header class="shipping__header">
+      <p class="shipping__eyebrow">
+        Envío local
+      </p>
+
+      <h2 id="shippingTitle">
+        Envío <span style="color: #fed201;">gratis</span> en Lima
+      </h2>
+
+      <p class="shipping__description">
+        Recibe tus productos Olif sin costo de envío en nuestros distritos
+        seleccionados.
+      </p>
+
+      <a
+        href="https://wa.me/51900000000"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="shipping__button"
+        (mouseenter)="showButtonEffect($event)"
+        (mouseleave)="hideButtonEffect($event)"
+        (focus)="showButtonEffect($event)"
+        (blur)="hideButtonEffect($event)"
+      >
+        <span
+          class="shipping__button-fill"
+          aria-hidden="true"
+        ></span>
+
+        <span class="shipping__button-label">
+          Consultar cobertura
+        </span>
+
+        <ion-icon
+          class="shipping__button-arrow"
+          name="arrow-forward-outline"
+          aria-hidden="true"
+        ></ion-icon>
+      </a>
+    </header>
+
+    <div
+      class="shipping__divider"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="shipping__districts"
+      aria-label="Distritos con envío gratuito"
+    >
+      @for (
+        district of districts;
+        track district
+      ) {
+        <span class="shipping__district">
+          {{ district }}
+        </span>
+      }
     </div>
 
-    <div class="coverage-shell">
-      <div class="coverage-heading">
-        <div class="coverage-icon" aria-hidden="true">
-          <ion-icon name="location-outline"></ion-icon>
-        </div>
-
-        <p class="coverage-eyebrow">Envío local</p>
-
-        <h2 id="coverageTitle">
-          Envío gratis<br>en Lima
-        </h2>
-
-        <p class="coverage-description">
-          Llevamos bienestar hasta tu puerta. Disfruta envío gratuito en
-          nuestros distritos seleccionados de Lima.
-        </p>
-
-        <div class="coverage-summary">
-          <strong>10</strong>
-
-          <span>
-            distritos con<br>
-            entrega gratuita
-          </span>
-        </div>
-      </div>
-
-      <div class="coverage-panel">
-        <div class="coverage-panel__heading">
-          <div>
-            <p>Área de cobertura</p>
-            <h3>¿Dónde entregamos?</h3>
-          </div>
-
-          <span class="coverage-panel__badge">Disponible</span>
-        </div>
-
-        <div
-          class="coverage-districts"
-          aria-label="Distritos con envío gratuito"
-        >
-          <div class="coverage-district">
-            <span class="coverage-district__number">01</span>
-            <span>Surco</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">02</span>
-            <span>Barranco</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">03</span>
-            <span>Jesús María</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">04</span>
-            <span>Miraflores</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">05</span>
-            <span>San Isidro</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">06</span>
-            <span>Lince</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">07</span>
-            <span>Pueblo Libre</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">08</span>
-            <span>Magdalena</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">09</span>
-            <span>Surquillo</span>
-          </div>
-
-          <div class="coverage-district">
-            <span class="coverage-district__number">10</span>
-            <span>Cercado de Lima</span>
-          </div>
-        </div>
-
-        <div class="coverage-panel__footer">
-          <ion-icon name="information-circle-outline"></ion-icon>
-          <p>
-            Envío gratuito sujeto a condiciones y monto mínimo de compra.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- <p class="shipping__note">
+      Envío gratuito sujeto a condiciones y monto mínimo de compra.
+    </p> -->
+  </div>
+</section>

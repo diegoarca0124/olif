@@ -1,309 +1,227 @@
-.coverage-section {
+:host {
+  display: block;
+}
+
+.shipping {
   background: #000;
-  color: #ffffff;
-  isolation: isolate;
+  color: #fff;
   overflow: hidden;
+}
+
+.shipping__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  max-width: 1600px;
+  padding:
+    clamp(68px, 6vw, 96px)
+    clamp(20px, 5vw, 84px);
+  text-align: center;
+}
+
+.shipping__header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 780px;
+  width: 100%;
+}
+
+.shipping__eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+.shipping h2 {
+  color: #f6ecc8;
+  font-family:
+    "Neue Haas Display",
+    Arial,
+    sans-serif;
+  font-size:
+    clamp(40px, 4vw, 62px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.shipping__description {
+  color: rgba(255, 255, 255, 0.67);
+  font-family:
+    "Gilroy Medium",
+    Arial,
+    sans-serif;
+  font-size:
+    clamp(15px, 1.05vw, 17px);
+  line-height: 1.6;
+  margin: 21px auto 0;
+  max-width: 570px;
+}
+
+.shipping__button {
+  align-items: center;
+  background: #e0eccc;
+  border-radius: 999px;
+  color: #18372d;
+  display: inline-flex;
+  font-family:
+    "Gilroy Bold",
+    Arial,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 13px;
+  justify-content: center;
+  margin-top: 28px;
+  min-height: 48px;
+  overflow: hidden;
+  padding: 12px 19px;
   position: relative;
-}
-
-.coverage-decoration {
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-}
-
-.coverage-decoration span {
-  border: 1px solid rgba(224, 236, 204, 0.16);
-  border-radius: 50%;
-  position: absolute;
+  text-decoration: none;
   will-change: transform;
 }
 
-.coverage-decoration span:first-child {
-  height: clamp(420px, 48vw, 780px);
-  left: clamp(-310px, -16vw, -120px);
-  top: clamp(-250px, -13vw, -100px);
-  width: clamp(420px, 48vw, 780px);
-}
-
-.coverage-decoration span:last-child {
-  bottom: clamp(-320px, -18vw, -150px);
-  height: clamp(430px, 42vw, 700px);
-  right: clamp(-280px, -14vw, -100px);
-  width: clamp(430px, 42vw, 700px);
-}
-
-.coverage-shell {
-  align-items: center;
-  display: grid;
-  gap: clamp(36px, 5vw, 72px);
-  grid-template-columns:
-    minmax(280px, 0.78fr)
-    minmax(520px, 1.22fr);
-  margin-inline: auto;
-  max-width: 1500px;
-  padding:
-    clamp(54px, 5.5vw, 82px)
-    clamp(20px, 5vw, 84px);
-  position: relative;
-}
-
-.coverage-heading {
-  max-width: 580px;
-}
-
-.coverage-icon {
-  align-items: center;
-  background: #e0eccc;
+.shipping__button-fill {
+  background: #f6ecc8;
   border-radius: 50%;
-  color: #414f23;
-  display: flex;
-  font-size: 23px;
-  height: 48px;
-  justify-content: center;
-  margin-bottom: 20px;
-  width: 48px;
+  height: 34px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform:
+    translate(-50%, -50%)
+    scale(0);
+  transform-origin: center;
+  width: 34px;
+  z-index: 0;
 }
 
-.coverage-eyebrow {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  margin: 0 0 13px;
-  text-transform: uppercase;
-}
-
-.coverage-heading h2 {
-  color: #f6ecc8;
-  font-family: "Neue Haas Display", Arial, sans-serif;
-  font-size: clamp(42px, 4.4vw, 66px);
-  font-weight: 900;
-  letter-spacing: 1px;
-  line-height: 0.92;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.coverage-description {
-  font-family: "Gilroy Medium";
-  color: rgba(255, 255, 255, 0.74);
-  font-size: clamp(15px, 1.12vw, 18px);
-  line-height: 1.52;
-  margin: 18px 0 0;
-  max-width: 500px;
-}
-
-.coverage-summary {
-  
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  gap: 18px;
-  margin-top: 26px;
-  max-width: 320px;
-  padding-top: 18px;
-}
-
-.coverage-summary strong {
-  color: #e0eccc;
-  font-family: "Neue Haas Display", Arial, sans-serif;
-  font-size: 42px;
-  font-weight: 900;
-  line-height: 0.8;
-}
-
-.coverage-summary span {
-  font-family: "Gilroy Bold";
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1.45;
-  text-transform: uppercase;
-}
-
-.coverage-panel {
-  background: #f7f6f2;
-  border-radius: 24px;
-  box-shadow: 0 22px 64px rgba(8, 24, 18, 0.22);
-  color: #1f2937;
-  overflow: hidden;
-  padding:
-    clamp(24px, 2.4vw, 34px)
-    clamp(20px, 2.7vw, 38px);
+.shipping__button-label {
+  color: #18372d;
   position: relative;
+  z-index: 1;
 }
 
-.coverage-panel__heading {
-  align-items: flex-start;
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.coverage-panel__heading p {
-  color: #6b7280;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  margin: 0 0 8px;
-  text-transform: uppercase;
-}
-
-.coverage-panel__heading h3 {
-  font-family: "Gilroy Bold";
-  color: #1f2937;
-  font-size: clamp(23px, 1.7vw, 30px);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  margin: 0;
-}
-
-.coverage-panel__badge {
-  background: #e0eccc;
-  border-radius: 999px;
-  color: #414f23;
-  flex-shrink: 0;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 9px 13px;
-  text-transform: uppercase;
-}
-
-.coverage-districts {
-  border-top: 1px solid rgba(39, 70, 58, 0.14);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.coverage-district {
-  align-items: center;
-  border-bottom: 1px solid rgba(39, 70, 58, 0.14);
-  display: grid;
-  gap: 12px;
-  grid-template-columns: 25px 1fr auto;
-  min-height: 50px;
-  padding: 10px 12px;
-  transition:
-    background-color 0.25s ease,
-    padding-left 0.25s ease;
-}
-
-.coverage-district:nth-child(odd) {
-  border-right: 1px solid rgba(39, 70, 58, 0.14);
-}
-
-.coverage-district:hover {
-  background: #e0eccc;
-  padding-left: 20px;
-}
-
-.coverage-district__number {
-  color: #9ca3af;
-  font-size: 9px;
-  font-weight: 800;
-}
-
-.coverage-district > span:nth-child(2) {
-  color: #414242;
-  font-size: clamp(13px, 1vw, 15px);
-  font-weight: 750;
-}
-
-.coverage-district ion-icon {
-  color: #414f23;
-  font-size: 16px;
-  opacity: 0;
-  transform: translateX(-6px);
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-}
-
-.coverage-district:hover ion-icon {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.coverage-panel__footer {
-  align-items: center;
-  color: #6b7280;
-  display: flex;
-  gap: 9px;
-  padding-top: 16px;
-}
-
-.coverage-panel__footer ion-icon {
-  color: #414f23;
-  flex-shrink: 0;
+.shipping__button-arrow {
+  color: #18372d;
+  flex: 0 0 auto;
   font-size: 18px;
+  position: relative;
+  will-change: transform;
+  z-index: 1;
 }
 
-.coverage-panel__footer p {
-  font-size: 11px;
-  line-height: 1.45;
-  margin: 0;
+.shipping__button:focus-visible {
+  outline: 3px solid rgba(224, 236, 204, 0.35);
+  outline-offset: 6px;
 }
 
-@media (max-width: 991.98px) {
-  .coverage-shell {
-    grid-template-columns: 1fr;
+.shipping__divider {
+  background: rgba(255, 255, 255, 0.16);
+  height: 1px;
+  margin:
+    clamp(38px, 4vw, 56px)
+    auto
+    clamp(25px, 3vw, 38px);
+  max-width: 1100px;
+  width: 100%;
+}
+
+.shipping__districts {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px 0;
+  justify-content: center;
+  max-width: 1050px;
+  width: 100%;
+}
+
+.shipping__district {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.75);
+  display: inline-flex;
+  font-family:
+    "Gilroy Medium",
+    Arial,
+    sans-serif;
+  font-size:
+    clamp(14px, 1.1vw, 17px);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.shipping__district:not(:last-child)::after {
+  background: #bcd0ae;
+  border-radius: 50%;
+  content: "";
+  height: 4px;
+  margin-inline:
+    clamp(12px, 1.5vw, 23px);
+  opacity: 0.65;
+  width: 4px;
+}
+
+.shipping__note {
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  margin: 22px 0 0;
+}
+
+@media (max-width: 767.98px) {
+  .shipping__container {
+    padding: 58px 20px;
   }
 
-  .coverage-heading {
-    max-width: 650px;
+  .shipping h2 {
+    font-size:
+      clamp(39px, 11vw, 54px);
+  }
+
+  .shipping__description {
+    font-size: 15px;
+  }
+
+  .shipping__districts {
+    gap: 12px 0;
+  }
+
+  .shipping__district {
+    font-size: 14px;
+  }
+
+  .shipping__district:not(:last-child)::after {
+    margin-inline: 11px;
   }
 }
 
-@media (max-width: 575.98px) {
-  .coverage-shell {
-    gap: 28px;
-    padding: 46px 16px;
+@media (max-width: 390px) {
+  .shipping__district {
+    font-size: 13px;
   }
 
-  .coverage-heading {
-    padding-inline: 5px;
-  }
-
-  .coverage-heading h2 {
-    font-size: clamp(40px, 12vw, 52px);
-  }
-
-  .coverage-panel {
-    border-radius: 20px;
-    padding: 22px 14px;
-  }
-
-  .coverage-panel__badge {
-    display: none;
-  }
-
-  .coverage-districts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .coverage-district {
-    gap: 7px;
-    grid-template-columns: 20px minmax(0, 1fr);
-    min-height: 50px;
-    padding: 9px 7px;
-  }
-
-  .coverage-district > span:nth-child(2) {
-    font-size: 12px;
+  .shipping__district:not(:last-child)::after {
+    height: 3px;
+    margin-inline: 8px;
+    width: 3px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .coverage-decoration span,
-  .coverage-heading,
-  .coverage-panel,
-  .coverage-district {
+  .shipping__button,
+  .shipping__button-fill,
+  .shipping__button-arrow {
     transform: none !important;
+    transition: none !important;
   }
 }
