@@ -105,70 +105,140 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
 
   showButtonEffect(event: Event): void {
     const button = event.currentTarget as HTMLElement;
-    const fill = button.querySelector<HTMLElement>('.categories__button-fill');
-    const label = button.querySelector<HTMLElement>('.categories__button-label');
-    const arrow = button.querySelector<HTMLElement>('.categories__button-arrow');
 
-    if (!fill || !label || !arrow) return;
+    const fill =
+      button.querySelector<HTMLElement>(
+        '.categories__button-fill'
+      );
+
+    const label =
+      button.querySelector<HTMLElement>(
+        '.categories__button-label'
+      );
+
+    const arrow =
+      button.querySelector<HTMLElement>(
+        '.categories__button-arrow'
+      );
+
+    if (!fill || !label || !arrow) {
+      return;
+    }
 
     this.buttonTimeline?.kill();
     this.buttonTimeline = gsap.timeline();
 
     this.buttonTimeline
-      .to(fill, {
-        scale: 5.5,
-        duration: 0.55,
-        ease: 'power3.inOut'
-      }, 0)
-      .to(label, {
-        color: '#18372d',
-        duration: 0.25
-      }, 0.08)
-      .to(arrow, {
-        color: '#18372d',
-        x: 5,
-        duration: 0.35,
-        ease: 'power2.out'
-      }, 0.08)
-      .to(button, {
-        y: -2,
-        duration: 0.35,
-        ease: 'power2.out'
-      }, 0);
+      .to(
+        fill,
+        {
+          scale: 6,
+          duration: 0.55,
+          ease: 'power3.inOut'
+        },
+        0
+      )
+      .to(
+        label,
+        {
+          color: '#18372d',
+          duration: 0.25
+        },
+        0.18
+      )
+      .to(
+        arrow,
+        {
+          color: '#18372d',
+          x: 5,
+          duration: 0.35,
+          ease: 'power2.out'
+        },
+        0.18
+      )
+      .to(
+        button,
+        {
+          y: -2,
+          duration: 0.35,
+          ease: 'power2.out'
+        },
+        0
+      )
+      .set(
+        button,
+        {
+          backgroundColor: '#f6ecc8'
+        },
+        0.5
+      );
   }
 
   hideButtonEffect(event: Event): void {
     const button = event.currentTarget as HTMLElement;
-    const fill = button.querySelector<HTMLElement>('.categories__button-fill');
-    const label = button.querySelector<HTMLElement>('.categories__button-label');
-    const arrow = button.querySelector<HTMLElement>('.categories__button-arrow');
 
-    if (!fill || !label || !arrow) return;
+    const fill =
+      button.querySelector<HTMLElement>(
+        '.categories__button-fill'
+      );
+
+    const label =
+      button.querySelector<HTMLElement>(
+        '.categories__button-label'
+      );
+
+    const arrow =
+      button.querySelector<HTMLElement>(
+        '.categories__button-arrow'
+      );
+
+    if (!fill || !label || !arrow) {
+      return;
+    }
 
     this.buttonTimeline?.kill();
     this.buttonTimeline = gsap.timeline();
 
     this.buttonTimeline
-      .to(fill, {
-        scale: 0,
-        duration: 0.45,
-        ease: 'power3.inOut'
-      }, 0)
-      .to(label, {
-        color: '#18372d',
-        duration: 0.25
-      }, 0)
-      .to(arrow, {
-        color: '#18372d',
-        x: 0,
-        duration: 0.3,
-        ease: 'power2.out'
-      }, 0)
-      .to(button, {
-        y: 0,
-        duration: 0.3,
-        ease: 'power2.out'
-      }, 0);
+      .set(button, {
+        backgroundColor: '#3b5545'
+      })
+      .to(
+        fill,
+        {
+          scale: 0,
+          duration: 0.45,
+          ease: 'power3.inOut'
+        },
+        0
+      )
+      .to(
+        label,
+        {
+          color: '#ffffff',
+          duration: 0.25
+        },
+        0.08
+      )
+      .to(
+        arrow,
+        {
+          color: '#ffffff',
+          x: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        },
+        0.08
+      )
+      .to(
+        button,
+        {
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        },
+        0
+      );
   }
 
   private initializeCardHover(): void {
