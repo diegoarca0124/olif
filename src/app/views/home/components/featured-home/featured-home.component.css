@@ -239,7 +239,7 @@
 
 .product-card__add {
   align-items: center;
-  background: #E2A1AE;
+  background: #9a9e66;
   border: 0;
   border-radius: 50%;
   color: #18372d;
@@ -523,7 +523,7 @@
 }
 
 .product-card__add.has-items {
-  background: #e2a1ae;
+  background: #9a9e66;
 }
 
 @media (max-width: 575.98px) {

@@ -25,9 +25,6 @@ export interface ProductsPage {
   providedIn: 'root'
 })
 export class ProductsService {
-
-  constructor() { }
-
   private readonly supabase = createClient(
     'https://uflciifbfkmrnydqvzfn.supabase.co',
     'sb_publishable_cWKlozbuyW_0QWxlTkp92Q_xLPsVlEa'
@@ -39,26 +36,81 @@ export class ProductsService {
       .select('*')
       .eq('featured', true)
       .eq('status', true)
-      .order('id', { ascending: true });
+      .order('id', {
+        ascending: true
+      });
 
     if (error) {
-      console.error('Error consultando productos:', error);
+      console.error(
+        'Error consultando productos destacados:',
+        error
+      );
+
       throw error;
     }
 
     return data ?? [];
   }
 
-  async getProductsPage(offset: number, limit = 20): Promise<ProductsPage> {
+  async getProductsPage(
+    offset: number,
+    limit = 20
+  ): Promise<ProductsPage> {
     const { data, error } = await this.supabase
       .from('products')
       .select('*')
       .eq('status', true)
-      .order('id', { ascending: true })
-      .range(offset, offset + limit);
+      .order('id', {
+        ascending: true
+      })
+      .range(
+        offset,
+        offset + limit
+      );
 
     if (error) {
-      console.error('Error consultando productos:', error);
+      console.error(
+        'Error consultando productos:',
+        error
+      );
+
+      throw error;
+    }
+
+    const rows = data ?? [];
+
+    return {
+      products: rows.slice(0, limit),
+      hasMore: rows.length > limit
+    };
+  }
+
+  async getProductsByCategoryPage(
+    category: string,
+    offset: number,
+    limit = 20
+  ): Promise<ProductsPage> {
+    console.log('category',category);
+    
+    const { data, error } = await this.supabase
+      .from('products')
+      .select('*')
+      .eq('status', true)
+      .eq('category', category)
+      .order('id', {
+        ascending: true
+      })
+      .range(
+        offset,
+        offset + limit
+      );
+
+    if (error) {
+      console.error(
+        'Error consultando productos por categoría:',
+        error
+      );
+
       throw error;
     }
 

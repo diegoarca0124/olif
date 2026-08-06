@@ -5,6 +5,7 @@ import {
   ElementRef,
   OnDestroy
 } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,7 +13,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [
+    RouterModule
+  ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

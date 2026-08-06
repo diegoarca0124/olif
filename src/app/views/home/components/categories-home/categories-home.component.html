@@ -1,4 +1,8 @@
-<section class="discover-section" id="discover" aria-labelledby="discoverTitle">
+<section
+  class="discover-section"
+  id="discover"
+  aria-labelledby="discoverTitle"
+>
   <div class="container-fluid">
     <div class="discover-heading">
       <div>
@@ -6,14 +10,17 @@
           Explora y descubre
         </p>
 
-        <h2 id="discoverTitle" class="fw-700 text-gray-800">
+        <h2
+          id="discoverTitle"
+          class="fw-700 text-gray-800"
+        >
           Nuestras <br>
           categorías
         </h2>
       </div>
 
       <a
-        routerLink="/productos"
+        routerLink="/products"
         class="categories__button"
         (mouseenter)="showButtonEffect($event)"
         (mouseleave)="hideButtonEffect($event)"
@@ -38,10 +45,16 @@
     </div>
 
     <div class="story-grid">
-      @for (category of categories; track category.id) {
+      @for (
+        category of categories;
+        track category.id
+      ) {
         <a
           [class]="'story-card ' + category.colorClass"
-          [routerLink]="category.link"
+          [routerLink]="[
+            '/products/category',
+            category.id
+          ]"
           [attr.aria-label]="'Ver productos de ' + category.name"
           [style.background-color]="category.bg"
           [style.color]="category.color"
