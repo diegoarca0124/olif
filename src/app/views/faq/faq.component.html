@@ -1,1 +1,98 @@
-<p>faq works!</p>
+<app-header></app-header>
+
+<main class="faq-page">
+  <section
+    class="faq-content"
+    aria-labelledby="faqTitle"
+  >
+    <div class="faq-content__container">
+      <header class="faq-content__heading">
+        <p class="faq-content__eyebrow">
+          Resolvemos tus dudas
+        </p>
+
+        <h1
+          id="faqTitle"
+          class="faq-content__title"
+        >
+          <span class="faq-content__title-mask">
+            <span class="faq-content__title-line">
+              Preguntas frecuentes
+            </span>
+          </span>
+        </h1>
+
+        <p class="faq-content__description">
+          Encuentra respuestas sobre nuestros productos,
+          compras, pagos, envíos y entregas.
+        </p>
+      </header>
+
+      <div
+        class="faq-list"
+        aria-label="Lista de preguntas frecuentes"
+      >
+        @for (
+          item of faqItems;
+          track item.id
+        ) {
+          <article
+            class="faq-item"
+            [class.is-open]="isOpen(item.id)"
+          >
+            <h2 class="faq-item__heading">
+              <button
+                type="button"
+                class="faq-question"
+                [attr.aria-expanded]="isOpen(item.id)"
+                [attr.aria-controls]="'answer-' + item.id"
+                [id]="'question-' + item.id"
+                (click)="toggleItem(item.id, answer)"
+              >
+                <span class="faq-question__number">
+                  {{
+                    $index + 1 < 10
+                      ? '0' + ($index + 1)
+                      : $index + 1
+                  }}
+                </span>
+
+                <span class="faq-question__text">
+                  {{ item.question }}
+                </span>
+
+                <span
+                  class="faq-question__icon"
+                  aria-hidden="true"
+                >
+                  <span></span>
+                  <span></span>
+                </span>
+              </button>
+            </h2>
+
+            <div
+              #answer
+              class="faq-answer"
+              role="region"
+              [id]="'answer-' + item.id"
+              [attr.aria-labelledby]="'question-' + item.id"
+            >
+              <div class="faq-answer__inner">
+                <div
+                  class="faq-answer__spacing"
+                  aria-hidden="true"
+                ></div>
+
+                <p>{{ item.answer }}</p>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<app-footer></app-footer>
