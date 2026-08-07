@@ -492,6 +492,16 @@
     width: 38px !important;
   }
 
+  .nav-cart-button {
+    height: 38px !important;
+    width: 38px !important;
+  }
+
+  .nav-cart-count {
+    right: -3px;
+    top: -4px;
+  }
+
   .h-25px,
   .w-25px {
     height: 23px;
