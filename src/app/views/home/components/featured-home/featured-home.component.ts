@@ -366,7 +366,7 @@ export class FeaturedHomeComponent
         row.regularPrice ||
         0
       ),
-      link: `/productos/${row.id}`,
+      link: `/products/${row.slug}`,
       label: row.label || undefined
     };
   }

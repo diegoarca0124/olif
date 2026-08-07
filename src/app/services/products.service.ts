@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 
 export interface ProductRow {
   id: number;
+  slug: string;
   name: string;
   category: string | null;
   cover: string | null;
@@ -120,5 +121,27 @@ export class ProductsService {
       products: rows.slice(0, limit),
       hasMore: rows.length > limit
     };
+  }
+
+  async getProductBySlug(
+    slug: string
+  ): Promise<ProductRow | null> {
+    const { data, error } = await this.supabase
+      .from('products')
+      .select('*')
+      .eq('slug', slug)
+      .eq('status', true)
+      .maybeSingle();
+
+    if (error) {
+      console.error(
+        'Error consultando el producto:',
+        error
+      );
+
+      throw error;
+    }
+
+    return data;
   }
 }
