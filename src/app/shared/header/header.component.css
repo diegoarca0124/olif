@@ -1,7 +1,27 @@
 :host {
   display: block;
+  height: calc(
+    var(--promo-height) +
+    var(--nav-height)
+  );
   position: relative;
-  z-index: 1000;
+  z-index: 10000;
+}
+
+.page-layer {
+  box-shadow:
+    0 0 0
+    rgba(11, 31, 22, 0);
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  will-change:
+    transform,
+    opacity,
+    box-shadow;
+  z-index: 10000;
 }
 
 .h-25px {
@@ -573,5 +593,20 @@
   .mobile-close-button,
   .mobile-drawer-footer a {
     transition-duration: 0.01ms;
+  }
+}
+
+.mobile-backdrop {
+  z-index: 10001;
+}
+
+.mobile-drawer {
+  z-index: 10002;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-layer {
+    transform: none !important;
+    transition: none !important;
   }
 }

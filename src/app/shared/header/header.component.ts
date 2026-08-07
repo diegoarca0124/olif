@@ -43,6 +43,9 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   @ViewChild('mobileCategories')
   private mobileCategories!: ElementRef<HTMLElement>;
 
+  @ViewChild('pageLayer')
+  private pageLayer!: ElementRef<HTMLElement>;
+
   private readonly cartService = inject(CartService);
   private desktopTween?: gsap.core.Tween;
   private mobileTimeline?: gsap.core.Timeline;
@@ -91,11 +94,46 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
+  private headerEntranceTween?: gsap.core.Tween;
+  private headerScrollTween?: gsap.core.Tween;
+  private headerScrolled = false;
+
   desktopCategoriesOpen = false;
   mobileMenuOpen = false;
   mobileCategoriesOpen = false;
 
   ngAfterViewInit(): void {
+
+    const header = this.pageLayer.nativeElement;
+
+    if (
+      window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches
+    ) {
+      gsap.set(header, {
+        y: 0,
+        opacity: 1
+      });
+    } else {
+      this.headerEntranceTween = gsap.fromTo(
+        header,
+        {
+          y: -24,
+          opacity: 0
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity'
+        }
+      );
+    }
+
+    this.updateHeaderScrollEffect(true);
+
     gsap.set(this.desktopCategories.nativeElement, {
       autoAlpha: 0,
       y: 12,
@@ -120,6 +158,43 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
       height: 0,
       autoAlpha: 0
     });
+  }
+
+  private updateHeaderScrollEffect(
+    force = false
+  ): void {
+    if (!this.pageLayer) {
+      return;
+    }
+
+    const isScrolled = window.scrollY > 12;
+
+    if (
+      !force &&
+      isScrolled === this.headerScrolled
+    ) {
+      return;
+    }
+
+    this.headerScrolled = isScrolled;
+    this.headerScrollTween?.kill();
+
+    this.headerScrollTween = gsap.to(
+      this.pageLayer.nativeElement,
+      {
+        boxShadow: isScrolled
+          ? '0 14px 35px rgba(11, 31, 22, 0.18)'
+          : '0 0 0 rgba(11, 31, 22, 0)',
+        duration: 0.38,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      }
+    );
+  }
+
+  @HostListener('window:scroll')
+  handleWindowScroll(): void {
+    this.updateHeaderScrollEffect();
   }
 
   toggleDesktopCategories(event: MouseEvent): void {
@@ -478,6 +553,9 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.headerEntranceTween?.kill();
+    this.headerScrollTween?.kill();
+
     this.desktopTween?.kill();
     this.mobileTimeline?.kill();
     this.mobileCategoriesTween?.kill();
