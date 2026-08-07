@@ -48,6 +48,7 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   private mobileTimeline?: gsap.core.Timeline;
   private mobileCategoriesTween?: gsap.core.Tween;
   private previousBodyOverflow = '';
+  private closingMobileMenu = false;
 
   readonly cartCount = this.cartService.itemCount;
 
@@ -102,13 +103,17 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
       pointerEvents: 'none'
     });
 
-    gsap.set(this.mobileBackdrop.nativeElement, {
-      autoAlpha: 0,
-      pointerEvents: 'none'
+    gsap.set(this.mobileDrawer.nativeElement, {
+      display: 'none',
+      visibility: 'hidden',
+      xPercent: -100
     });
 
-    gsap.set(this.mobileDrawer.nativeElement, {
-      xPercent: -100
+    gsap.set(this.mobileBackdrop.nativeElement, {
+      display: 'none',
+      visibility: 'hidden',
+      opacity: 0,
+      pointerEvents: 'none'
     });
 
     gsap.set(this.mobileCategories.nativeElement, {
@@ -186,6 +191,10 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   toggleMobileMenu(): void {
+    if (this.closingMobileMenu) {
+      return;
+    }
+
     if (this.mobileMenuOpen) {
       this.closeMobileMenu();
       return;
@@ -195,13 +204,17 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   openMobileMenu(): void {
-    if (window.innerWidth >= 992) {
+    if (
+      window.innerWidth >= 992 ||
+      this.mobileMenuOpen ||
+      this.closingMobileMenu
+    ) {
       return;
     }
 
     this.mobileTimeline?.kill();
-    this.mobileMenuOpen = true;
 
+    this.mobileMenuOpen = true;
     this.previousBodyOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
@@ -209,14 +222,28 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     const drawer = this.mobileDrawer.nativeElement;
     const items = drawer.querySelectorAll('.mobile-animate');
 
+    gsap.killTweensOf([backdrop, drawer, items]);
+
+    gsap.set(drawer, {
+      display: 'flex',
+      visibility: 'visible',
+      xPercent: -100
+    });
+
+    gsap.set(backdrop, {
+      display: 'block',
+      visibility: 'visible',
+      opacity: 0,
+      pointerEvents: 'auto'
+    });
+
     this.mobileTimeline = gsap.timeline();
 
     this.mobileTimeline
       .to(
         backdrop,
         {
-          autoAlpha: 1,
-          pointerEvents: 'auto',
+          opacity: 1,
           duration: 0.3,
           ease: 'power2.out'
         },
@@ -227,7 +254,8 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
         {
           xPercent: 0,
           duration: 0.55,
-          ease: 'power4.out'
+          ease: 'power4.out',
+          overwrite: true
         },
         0
       )
@@ -249,37 +277,66 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   closeMobileMenu(): void {
-    if (!this.mobileDrawer || !this.mobileBackdrop) {
+    if (
+      !this.mobileMenuOpen ||
+      this.closingMobileMenu ||
+      !this.mobileDrawer ||
+      !this.mobileBackdrop
+    ) {
       return;
     }
 
+    this.closingMobileMenu = true;
     this.mobileTimeline?.kill();
-    this.mobileMenuOpen = false;
-    document.body.style.overflow = this.previousBodyOverflow;
+    this.mobileCategoriesTween?.kill();
 
+    document.body.style.overflow = this.previousBodyOverflow;
     this.closeMobileCategories(false);
 
-    this.mobileTimeline = gsap.timeline();
+    const drawer = this.mobileDrawer.nativeElement;
+    const backdrop = this.mobileBackdrop.nativeElement;
+
+    gsap.killTweensOf([drawer, backdrop]);
+
+    this.mobileTimeline = gsap.timeline({
+      onComplete: () => {
+        this.mobileMenuOpen = false;
+        this.closingMobileMenu = false;
+
+        gsap.set(drawer, {
+          display: 'none',
+          visibility: 'hidden',
+          xPercent: -100
+        });
+
+        gsap.set(backdrop, {
+          display: 'none',
+          visibility: 'hidden',
+          opacity: 0,
+          pointerEvents: 'none'
+        });
+      }
+    });
 
     this.mobileTimeline
       .to(
-        this.mobileDrawer.nativeElement,
+        drawer,
         {
           xPercent: -100,
           duration: 0.42,
-          ease: 'power3.inOut'
+          ease: 'power3.inOut',
+          overwrite: true
         },
         0
       )
       .to(
-        this.mobileBackdrop.nativeElement,
+        backdrop,
         {
-          autoAlpha: 0,
-          pointerEvents: 'none',
+          opacity: 0,
           duration: 0.28,
           ease: 'power2.in'
         },
-        0.12
+        0.1
       );
   }
 
@@ -293,11 +350,17 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   openMobileCategories(): void {
+    if (!this.mobileCategories || !this.mobileMenuOpen) {
+      return;
+    }
+
     this.mobileCategoriesTween?.kill();
     this.mobileCategoriesOpen = true;
 
     const container = this.mobileCategories.nativeElement;
-    const items = container.querySelectorAll('.mobile-category-link');
+    const items = container.querySelectorAll(
+      '.mobile-category-link'
+    );
 
     this.mobileCategoriesTween = gsap.to(container, {
       height: 'auto',
@@ -379,19 +442,47 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:resize')
   handleResize(): void {
-    if (window.innerWidth >= 992 && this.mobileMenuOpen) {
-      this.closeMobileMenu();
+    if (window.innerWidth >= 992) {
+      this.closeDesktopCategories();
+
+      if (this.mobileMenuOpen) {
+        this.mobileTimeline?.kill();
+        this.mobileCategoriesTween?.kill();
+
+        this.mobileMenuOpen = false;
+        this.mobileCategoriesOpen = false;
+        this.closingMobileMenu = false;
+
+        document.body.style.overflow =
+          this.previousBodyOverflow;
+
+        gsap.set(this.mobileDrawer.nativeElement, {
+          clearProps: 'transform'
+        });
+
+        gsap.set(this.mobileBackdrop.nativeElement, {
+          clearProps:
+            'opacity,visibility,pointerEvents'
+        });
+
+        gsap.set(this.mobileCategories.nativeElement, {
+          height: 0,
+          autoAlpha: 0
+        });
+      }
+
+      return;
     }
 
-    if (window.innerWidth < 992) {
-      this.closeDesktopCategories();
-    }
+    this.closeDesktopCategories();
   }
 
   ngOnDestroy(): void {
     this.desktopTween?.kill();
     this.mobileTimeline?.kill();
     this.mobileCategoriesTween?.kill();
-    document.body.style.overflow = this.previousBodyOverflow;
+
+    document.body.style.overflow =
+      this.previousBodyOverflow;
   }
 }

@@ -20,6 +20,7 @@
         type="button"
         [class.is-open]="mobileMenuOpen"
         [attr.aria-expanded]="mobileMenuOpen"
+        aria-controls="mobileNavigation"
         aria-label="Abrir menú"
         (click)="toggleMobileMenu()"
       >
@@ -54,7 +55,10 @@
             id="desktopCategoriesMenu"
             class="desktop-categories"
           >
-            @for (category of categories; track category.slug) {
+            @for (
+              category of categories;
+              track category.slug
+            ) {
               <a
                 class="desktop-category-link"
                 [routerLink]="[
@@ -71,8 +75,13 @@
                 </span>
 
                 <span class="category-text">
-                  <span class="category-name">{{ category.name }}</span>
-                  <small class="category-description">{{ category.description }}</small>
+                  <span class="category-name">
+                    {{ category.name }}
+                  </span>
+
+                  <small class="category-description">
+                    {{ category.description }}
+                  </small>
                 </span>
 
                 <ion-icon
@@ -136,13 +145,16 @@
 <div
   #mobileBackdrop
   class="mobile-backdrop"
+  [class.is-open]="mobileMenuOpen"
   [attr.aria-hidden]="!mobileMenuOpen"
   (click)="closeMobileMenu()"
 ></div>
 
 <aside
   #mobileDrawer
+  id="mobileNavigation"
   class="mobile-drawer"
+  [class.is-open]="mobileMenuOpen"
   [attr.aria-hidden]="!mobileMenuOpen"
   aria-label="Menú de navegación"
 >
@@ -173,7 +185,10 @@
         (click)="closeAfterNavigation()"
       >
         <span>Inicio</span>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
+
+        <ion-icon
+          name="arrow-forward-outline"
+        ></ion-icon>
       </a>
 
       <a
@@ -182,25 +197,40 @@
         (click)="closeAfterNavigation()"
       >
         <span>Productos</span>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
+
+        <ion-icon
+          name="arrow-forward-outline"
+        ></ion-icon>
       </a>
 
       <button
-        class="mobile-main-link mobile-categories-button mobile-animate"
+        class="
+          mobile-main-link
+          mobile-categories-button
+          mobile-animate
+        "
         type="button"
         [class.is-open]="mobileCategoriesOpen"
         [attr.aria-expanded]="mobileCategoriesOpen"
+        aria-controls="mobileCategoriesList"
         (click)="toggleMobileCategories()"
       >
         <span>Categorías</span>
-        <ion-icon name="chevron-down-outline"></ion-icon>
+
+        <ion-icon
+          name="chevron-down-outline"
+        ></ion-icon>
       </button>
 
       <div
         #mobileCategories
+        id="mobileCategoriesList"
         class="mobile-categories"
       >
-        @for (category of categories; track category.slug) {
+        @for (
+          category of categories;
+          track category.slug
+        ) {
           <a
             class="mobile-category-link"
             [routerLink]="[
@@ -216,8 +246,14 @@
               >
             </span>
 
-            <span class="mobile-category-name">
-              {{ category.name }}
+            <span class="mobile-category-text">
+              <span class="mobile-category-name">
+                {{ category.name }}
+              </span>
+
+              <small class="mobile-category-description">
+                {{ category.description }}
+              </small>
             </span>
 
             <ion-icon
