@@ -82,6 +82,10 @@ export class IndexProductsComponent
     });
   }
 
+  decreaseCart(productId: number): void {
+    this.cartService.decrease(productId);
+  }
+
   cartQuantity(productId: number): number {
     return this.cartService.quantityOf(productId);
   }

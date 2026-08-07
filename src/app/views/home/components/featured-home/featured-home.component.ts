@@ -87,6 +87,12 @@ export class FeaturedHomeComponent
     });
   }
 
+  decreaseCart(productId: number, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.cartService.decrease(productId);
+  }
+
   showAddButtonEffect(event: Event): void {
     const button =
       event.currentTarget as HTMLElement;

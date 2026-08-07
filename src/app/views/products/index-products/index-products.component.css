@@ -162,8 +162,10 @@
 }
 
 .product-card__add-wrapper {
+  align-items: center;
+  display: flex;
   flex: 0 0 auto;
-  position: relative;
+  gap: 7px;
 }
 
 .product-card__add {
@@ -219,7 +221,7 @@
 .product-card__quantity {
   align-items: center;
   background: #969a63;
-  border: 2px solid #f7f6f2;
+  border: 0;
   border-radius: 999px;
   color: #ffffff;
   display: flex;
@@ -234,10 +236,6 @@
   min-width: 20px;
   padding-inline: 4px;
   pointer-events: none;
-  position: absolute;
-  right: -8px;
-  top: -9px;
-  z-index: 4;
 }
 
 .products-page__more-error {
@@ -334,12 +332,9 @@
   }
 
   .product-card__quantity {
-    border-width: 1px;
     font-size: 8px;
     height: 18px;
     min-width: 18px;
-    right: -6px;
-    top: -7px;
   }
 }
 

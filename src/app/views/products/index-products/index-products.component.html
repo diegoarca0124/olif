@@ -64,6 +64,29 @@
                 </strong>
 
                 <div class="product-card__add-wrapper">
+                  @if (cartQuantity(product.id) > 0) {
+                    <button
+                      type="button"
+                      class="product-card__add"
+                      [attr.aria-label]="'Disminuir una unidad de ' + product.name"
+                      (click)="decreaseCart(product.id)"
+                      (mouseenter)="showAddButtonEffect($event)"
+                      (mouseleave)="hideAddButtonEffect($event)"
+                      (focus)="showAddButtonEffect($event)"
+                      (blur)="hideAddButtonEffect($event)"
+                    >
+                      <span class="product-card__add-fill" aria-hidden="true"></span>
+                      <ion-icon class="product-card__add-icon" name="remove-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <span
+                      class="product-card__quantity"
+                      [attr.aria-label]="cartQuantity(product.id) + ' unidades en el carrito'"
+                    >
+                      {{ cartQuantity(product.id) }}
+                    </span>
+                  }
+
                   <button
                     type="button"
                     class="product-card__add"
@@ -86,17 +109,6 @@
                       aria-hidden="true"
                     ></ion-icon>
                   </button>
-
-                  @if (
-                    cartQuantity(product.id) > 0
-                  ) {
-                    <span
-                      class="product-card__quantity"
-                      [attr.aria-label]="cartQuantity(product.id) + ' unidades en el carrito'"
-                    >
-                      {{ cartQuantity(product.id) }}
-                    </span>
-                  }
                 </div>
               </div>
             </div>

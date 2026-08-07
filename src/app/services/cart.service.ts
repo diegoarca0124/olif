@@ -63,7 +63,6 @@ export class CartService {
         ];
 
     this.updateCart(updatedItems);
-    this.openRequests.next();
   }
 
   increase(productId: number): void {

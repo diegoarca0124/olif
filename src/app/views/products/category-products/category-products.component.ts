@@ -156,6 +156,10 @@ export class CategoryProductsComponent
     });
   }
 
+  decreaseCart(productId: number): void {
+    this.cartService.decrease(productId);
+  }
+
   cartQuantity(
     productId: number
   ): number {
