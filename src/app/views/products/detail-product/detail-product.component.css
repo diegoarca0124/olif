@@ -12,7 +12,6 @@
   margin-inline: auto;
   max-width: 1600px;
   padding: 38px var(--page-gutter) clamp(90px, 10vw, 160px);
-  padding-bottom: 30px !important;
 }
 
 .product-detail__breadcrumbs {
@@ -389,38 +388,44 @@
 
 .product-detail__about {
   border-top: 1px solid rgba(0, 0, 0, 0.14);
-  display: grid;
-  gap: 45px;
-  grid-template-columns: 0.55fr 1.45fr;
-  margin-top: clamp(85px, 10vw, 150px);
-  padding-top: clamp(45px, 6vw, 85px);
+  margin-top: 80px;
+  padding-top: 80px;
+  width: 100%;
 }
 
-.product-detail__about > p {
-  color: #121212;
-  font-family: "Gilroy Bold", Arial, sans-serif;
-  font-size: 14px;
-  margin: 8px 0 0;
-  text-transform: uppercase;
-}
-
-.product-detail__about h2 {
-  color: #181818;
-  font-family: "Neue Haas Display", Arial, sans-serif;
-  font-size: clamp(42px, 5vw, 80px);
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 0.92;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.product-detail__about div > p {
-  color: #5f5f5f;
+.product-detail__content {
+  color: #353535;
   font-family: "Gilroy Medium", Arial, sans-serif;
-  font-size: clamp(15px, 1.25vw, 19px);
-  line-height: 1.75;
-  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: none;
+  width: 100%;
+}
+
+.product-detail__content h2,
+.product-detail__content h3 {
+  color: #181818;
+  font-family: "Gilroy Extra Bold", Arial, sans-serif;
+}
+
+.product-detail__content h2 {
+  font-size: clamp(28px, 4vw, 46px);
+  margin: 0 0 20px;
+}
+
+.product-detail__content h3 {
+  font-size: 20px;
+  margin: 30px 0 12px;
+}
+
+.product-detail__content p,
+.product-detail__content ul {
+  margin: 0 0 18px;
+  max-width: none;
+}
+
+.product-detail__content strong {
+  font-family: "Gilroy Bold", Arial, sans-serif;
 }
 
 .product-detail__state {
@@ -556,11 +561,6 @@
   .product-detail__add {
     min-height: 53px;
   }
-
-  .product-detail__about {
-    gap: 24px;
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -577,38 +577,4 @@
   .product-detail__button-fill {
     display: none;
   }
-}
-
-/********************/
-
-.product-detail__content {
-  color: #353535;
-  font-family: "Gilroy Medium", Arial, sans-serif;
-  font-size: 17px;
-  line-height: 1.65;
-}
-
-.product-detail__content h2,
-.product-detail__content h3 {
-  color: #181818;
-  font-family: "Gilroy Extra Bold", Arial, sans-serif;
-}
-
-.product-detail__content h2 {
-  font-size: clamp(28px, 4vw, 46px);
-  margin: 0 0 20px;
-}
-
-.product-detail__content h3 {
-  font-size: 20px;
-  margin: 30px 0 12px;
-}
-
-.product-detail__content p,
-.product-detail__content ul {
-  margin: 0 0 18px;
-}
-
-.product-detail__content strong {
-  font-family: "Gilroy Bold", Arial, sans-serif;
 }

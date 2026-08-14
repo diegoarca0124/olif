@@ -85,7 +85,7 @@ a {
 
 .announcement {
   align-items: center;
-  background: #000 !important;
+  background: #fed201 !important;
   display: flex;
   font-weight: 500;
   height: var(--promo-height);

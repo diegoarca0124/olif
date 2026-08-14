@@ -99,11 +99,9 @@
 }
 
 .site-footer__divider {
-  background:
-    rgba(255, 255, 255, 0.18);
+  background: #e3e3e3;
   height: 1px;
-  margin-block:
-    clamp(38px, 4.5vw, 68px);
+  margin-block: clamp(15px, 3vw, 48px);
   transform-origin: left center;
   width: 100%;
 }

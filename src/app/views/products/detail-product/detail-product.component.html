@@ -145,11 +145,11 @@
         </div>
       </section>
 
-      <section class="product-detail__about" aria-labelledby="aboutProductTitle">
-      
-        <div  [innerHTML]="safeDescription">
-          
-        </div>
+      <section class="product-detail__about">
+        <div
+          class="product-detail__content"
+          [innerHTML]="safeDescription"
+        ></div>
       </section>
     </div>
   }
