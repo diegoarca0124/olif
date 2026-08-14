@@ -45,50 +45,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       bg: '#f6ecc8',
       color: '#0a0a0a'
     },
-    {
-      id: 'cuidado-diabetes',
-      name: 'Cuidado de la diabetes',
-      description: 'Control y confianza en tu rutina',
-      image: '/categories/image-03-transparent.png',
-      alt: 'Productos para el cuidado de la diabetes',
-      colorClass: 'story-card--purple',
-      link: '/productos/categoria/cuidado-diabetes',
-      bg: '#f6ecc8',
-      color: '#0a0a0a'
-    },
-    {
-      id: 'cuidado-personal',
-      name: 'Cuidado personal',
-      description: 'Cuidado esencial para cuerpo y piel',
-      image: '/categories/image-04-transparent.png',
-      alt: 'Productos naturales para el cuidado personal',
-      colorClass: 'story-card--green',
-      link: '/productos/categoria/cuidado-personal',
-      bg: '#f6ecc8',
-      color: '#0a0a0a'
-    },
-    {
-      id: 'limpieza',
-      name: 'Limpieza',
-      description: 'Soluciones prácticas para tu hogar',
-      image: '/categories/image-05-transparent.png',
-      alt: 'Productos para la limpieza del hogar',
-      colorClass: 'story-card--aqua',
-      link: '/productos/categoria/limpieza',
-      bg: '#f6ecc8',
-      color: '#0a0a0a'
-    },
-    {
-      id: 'alimentos',
-      name: 'Alimentos',
-      description: 'Opciones saludables para disfrutar',
-      image: '/categories/image-06-transparent.png',
-      alt: 'Alimentos y productos nutricionales',
-      colorClass: 'story-card--rose',
-      link: '/productos/categoria/alimentos',
-      bg: '#f6ecc8',
-      color: '#0a0a0a'
-    }
+   
   ];
 
   private context?: gsap.Context;
