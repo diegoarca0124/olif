@@ -37,7 +37,7 @@
         @for (product of products; track product.id) {
           <article class="product-card">
             <a
-              [href]="product.link"
+              [routerLink]="product.link"
               class="product-card__image"
               [attr.aria-label]="'Ver ' + product.name"
             >
@@ -76,7 +76,7 @@
               </p>
 
               <h3>
-                <a [href]="product.link">
+                <a [routerLink]="product.link">
                   {{ product.name }}
                 </a>
               </h3>

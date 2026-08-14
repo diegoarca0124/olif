@@ -32,6 +32,7 @@ interface ProductDetail {
   regularPrice: number | null;
   stock: number;
   description: string;
+  excerpt: string;
   label?: string;
 }
 
@@ -280,6 +281,7 @@ export class DetailProductComponent implements OnInit, OnDestroy {
           ? regularPrice
           : null,
       stock: Math.max(0, Math.trunc(this.parseNumber(row.stock))),
+      excerpt:  row.excerpt?.trim() || '',
       description:
         row.description?.trim() ||
         'Producto seleccionado para acompañar tu rutina de bienestar diario.',

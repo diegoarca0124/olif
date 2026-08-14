@@ -71,7 +71,7 @@
             }
           </div>
 
-          <p class="product-detail__description">{{ product.description }}</p>
+          <p class="product-detail__description">{{ product.excerpt }}</p>
 
           <dl class="product-detail__facts">
             <div>
@@ -151,8 +151,8 @@
 
       <section class="product-detail__about" aria-labelledby="aboutProductTitle">
         <p>Conoce tu producto</p>
-        <div>
-          <p>{{ product.description }}</p>
+        <div [innerHTML]="product.description">
+          
         </div>
       </section>
     </div>

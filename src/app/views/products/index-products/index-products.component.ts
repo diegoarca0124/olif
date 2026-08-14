@@ -7,6 +7,7 @@ import {
   OnInit
 } from '@angular/core';
 import { gsap } from 'gsap';
+import { RouterLink } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import {
   ProductRow,
@@ -17,6 +18,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 
 interface CatalogProduct {
   id: number;
+  slug: string;
   name: string;
   category: string;
   cover: string;
@@ -28,6 +30,7 @@ interface CatalogProduct {
   selector: 'app-index-products',
   imports: [
     DecimalPipe,
+    RouterLink,
     HeaderComponent,
     FooterComponent
   ],
@@ -259,6 +262,7 @@ export class IndexProductsComponent
   ): CatalogProduct {
     return {
       id: row.id,
+      slug: row.slug,
       name: row.name,
       category:
         row.category?.trim() || 'Producto',

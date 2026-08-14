@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { gsap } from 'gsap';
 import { Subscription } from 'rxjs';
 import { CartService } from '../../../services/cart.service';
@@ -19,6 +19,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 
 interface CatalogProduct {
   id: number;
+  slug: string;
   name: string;
   category: string;
   cover: string;
@@ -71,6 +72,7 @@ const CATEGORY_CONFIG: Record<
   selector: 'app-category-products',
   imports: [
     DecimalPipe,
+    RouterLink,
     HeaderComponent,
     FooterComponent
   ],
@@ -383,6 +385,7 @@ export class CategoryProductsComponent
   ): CatalogProduct {
     return {
       id: row.id,
+      slug: row.slug,
       name: row.name,
       category:
         row.category?.trim() ||

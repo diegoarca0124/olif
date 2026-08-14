@@ -31,8 +31,8 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Vitaminas para el bienestar diario',
       colorClass: 'story-card--coral',
       link: '/productos/categoria/vitaminas',
-      bg: '#2B4735',
-      color: '#f6ecc8'
+      bg: '#f6ecc8',
+      color: '#0a0a0a'
     },
     {
       id: 'cereales-frutos-secos',
@@ -42,7 +42,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Selección de cereales y frutos secos',
       colorClass: 'story-card--blue',
       link: '/productos/categoria/cereales-frutos-secos',
-      bg: '#fed200',
+      bg: '#f6ecc8',
       color: '#0a0a0a'
     },
     {
@@ -53,8 +53,8 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Productos para el cuidado de la diabetes',
       colorClass: 'story-card--purple',
       link: '/productos/categoria/cuidado-diabetes',
-      bg: '#BF8F67',
-      color: '#f6ecc8'
+      bg: '#f6ecc8',
+      color: '#0a0a0a'
     },
     {
       id: 'cuidado-personal',
@@ -64,7 +64,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Productos naturales para el cuidado personal',
       colorClass: 'story-card--green',
       link: '/productos/categoria/cuidado-personal',
-      bg: '#E2A1AE',
+      bg: '#f6ecc8',
       color: '#0a0a0a'
     },
     {
@@ -86,8 +86,8 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Alimentos y productos nutricionales',
       colorClass: 'story-card--rose',
       link: '/productos/categoria/alimentos',
-      bg: '#9A9E66',
-      color: '#f6ecc8'
+      bg: '#f6ecc8',
+      color: '#0a0a0a'
     }
   ];
 

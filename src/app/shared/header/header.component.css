@@ -43,7 +43,7 @@
 .desktop-category-button {
   background: transparent;
   border: 0;
-  color: aliceblue;
+  color: #3b5545;
   cursor: pointer;
   font-family: "Gilroy Bold", Arial, sans-serif;
   padding: 0;
@@ -524,8 +524,8 @@
 
   .h-25px,
   .w-25px {
-    height: 23px;
-    width: 23px;
+    height: 20px;
+    width: 20px;
   }
 
   .announcement p {

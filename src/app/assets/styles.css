@@ -3,8 +3,8 @@
   --green: #f8efda;
   --black: #0b0b0b;
   --white: #fff;
-  --nav-height: 90px;
-  --promo-height: 35px;
+  --nav-height: 78px;
+  --promo-height: 40px;
 }
 
 html,
@@ -85,12 +85,12 @@ a {
 
 .announcement {
   align-items: center;
-  background: #f6ecc8 !important;
+  background: #000 !important;
   display: flex;
   font-weight: 500;
   height: var(--promo-height);
   justify-content: center;
-  padding: 0 30px;
+  padding: 0 35px;
 }
 
 .announcement p {
@@ -111,7 +111,7 @@ a {
 }
 
 .main-nav {
-  background: #3b5545;
+  background: #f7f6f2;
   height: var(--nav-height);
   padding: 0;
   position: relative;
@@ -154,7 +154,7 @@ a {
 
 .brand {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(31px, 3vw, 44px);
+  font-size: clamp(28px, 2.7vw, 40px);
   font-weight: 700;
   letter-spacing: -.055em;
   line-height: 1;
@@ -333,7 +333,7 @@ a {
 @media (max-width: 991.98px) {
   :root {
     --promo-height: 48px;
-    --nav-height: 82px;
+    --nav-height: 70px;
   }
 
   .announcement {

@@ -14,6 +14,7 @@ export interface ProductRow {
   stock: string | null;
   image: string;
   description: string | null;
+  excerpt: string | null;
   label: string | null;
 }
 

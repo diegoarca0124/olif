@@ -51,7 +51,11 @@
           track product.id
         ) {
           <article class="product-card">
-            <div class="product-card__image">
+            <a
+              class="product-card__image"
+              [routerLink]="['/products', product.slug]"
+              [attr.aria-label]="'Ver detalle de ' + product.name"
+            >
               @if (product.label) {
                 <span class="product-card__label">
                   {{ product.label }}
@@ -63,12 +67,16 @@
                 [alt]="product.name"
                 loading="lazy"
               >
-            </div>
+            </a>
 
             <div class="product-card__content">
               <p>{{ product.category }}</p>
 
-              <h2>{{ product.name }}</h2>
+              <h2>
+                <a [routerLink]="['/products', product.slug]">
+                  {{ product.name }}
+                </a>
+              </h2>
 
               <div class="product-card__footer">
                 <strong>

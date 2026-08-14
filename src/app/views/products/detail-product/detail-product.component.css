@@ -157,8 +157,8 @@
 
 .product-detail__info h1 {
   color: #181818;
-  font-family: "Neue Haas Display", Arial, sans-serif;
-  font-size: clamp(35px, 2.5vw, 52px);
+  font-family: "Gilroy Extra Bold", Arial, sans-serif;
+  font-size: clamp(30px, 2.2vw, 47px);
   font-weight: 900;
   line-height: 0.96;
   margin: 0;
@@ -174,7 +174,7 @@
 
 .product-detail__price-row strong {
   color: #111111;
-  font-family: "Neue Haas Display", Arial, sans-serif;
+  font-family: "Gilroy Extra Bold", Arial, sans-serif;
   font-size: clamp(25px, 2.2vw, 34px);
 }
 
@@ -577,3 +577,6 @@
     display: none;
   }
 }
+
+/********************/
+
