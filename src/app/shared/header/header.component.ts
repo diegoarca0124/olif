@@ -47,11 +47,15 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   private pageLayer!: ElementRef<HTMLElement>;
 
   private readonly cartService = inject(CartService);
+
   private desktopTween?: gsap.core.Tween;
   private mobileTimeline?: gsap.core.Timeline;
   private mobileCategoriesTween?: gsap.core.Tween;
+  private headerScrollTween?: gsap.core.Tween;
+
   private previousBodyOverflow = '';
   private closingMobileMenu = false;
+  private headerScrolled = false;
 
   readonly cartCount = this.cartService.itemCount;
 
@@ -94,44 +98,11 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
-  private headerEntranceTween?: gsap.core.Tween;
-  private headerScrollTween?: gsap.core.Tween;
-  private headerScrolled = false;
-
   desktopCategoriesOpen = false;
   mobileMenuOpen = false;
   mobileCategoriesOpen = false;
 
   ngAfterViewInit(): void {
-
-    const header = this.pageLayer.nativeElement;
-
-    if (
-      window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
-      ).matches
-    ) {
-      gsap.set(header, {
-        y: 0,
-        opacity: 1
-      });
-    } else {
-      this.headerEntranceTween = gsap.fromTo(
-        header,
-        {
-          y: -24,
-          opacity: 0
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.75,
-          ease: 'power3.out',
-          clearProps: 'transform,opacity'
-        }
-      );
-    }
-
     this.updateHeaderScrollEffect(true);
 
     gsap.set(this.desktopCategories.nativeElement, {
@@ -160,19 +131,14 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private updateHeaderScrollEffect(
-    force = false
-  ): void {
+  private updateHeaderScrollEffect(force = false): void {
     if (!this.pageLayer) {
       return;
     }
 
     const isScrolled = window.scrollY > 12;
 
-    if (
-      !force &&
-      isScrolled === this.headerScrolled
-    ) {
+    if (!force && isScrolled === this.headerScrolled) {
       return;
     }
 
@@ -433,9 +399,7 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     this.mobileCategoriesOpen = true;
 
     const container = this.mobileCategories.nativeElement;
-    const items = container.querySelectorAll(
-      '.mobile-category-link'
-    );
+    const items = container.querySelectorAll('.mobile-category-link');
 
     this.mobileCategoriesTween = gsap.to(container, {
       height: 'auto',
@@ -536,8 +500,7 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
         });
 
         gsap.set(this.mobileBackdrop.nativeElement, {
-          clearProps:
-            'opacity,visibility,pointerEvents'
+          clearProps: 'opacity,visibility,pointerEvents'
         });
 
         gsap.set(this.mobileCategories.nativeElement, {
@@ -553,9 +516,7 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.headerEntranceTween?.kill();
     this.headerScrollTween?.kill();
-
     this.desktopTween?.kill();
     this.mobileTimeline?.kill();
     this.mobileCategoriesTween?.kill();

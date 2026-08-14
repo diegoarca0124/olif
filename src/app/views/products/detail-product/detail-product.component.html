@@ -79,10 +79,6 @@
               <dd>{{ product.format }}</dd>
             </div>
             <div>
-              <dt>Origen</dt>
-              <dd>{{ product.origin }}</dd>
-            </div>
-            <div>
               <dt>Disponibilidad</dt>
               <dd [class.is-out]="product.stock <= 0">
                 {{ product.stock > 0 ? product.stock + ' disponibles' : 'Agotado' }}
@@ -150,8 +146,8 @@
       </section>
 
       <section class="product-detail__about" aria-labelledby="aboutProductTitle">
-        <p>Conoce tu producto</p>
-        <div [innerHTML]="product.description">
+      
+        <div  [innerHTML]="safeDescription">
           
         </div>
       </section>

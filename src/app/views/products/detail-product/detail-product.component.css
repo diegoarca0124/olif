@@ -12,6 +12,7 @@
   margin-inline: auto;
   max-width: 1600px;
   padding: 38px var(--page-gutter) clamp(90px, 10vw, 160px);
+  padding-bottom: 30px !important;
 }
 
 .product-detail__breadcrumbs {
@@ -392,7 +393,7 @@
   gap: 45px;
   grid-template-columns: 0.55fr 1.45fr;
   margin-top: clamp(85px, 10vw, 150px);
-  padding-top: clamp(55px, 7vw, 95px);
+  padding-top: clamp(45px, 6vw, 85px);
 }
 
 .product-detail__about > p {
