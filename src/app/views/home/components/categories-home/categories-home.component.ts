@@ -24,13 +24,13 @@ interface Category {
 export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
   categories: Category[] = [
     {
-      id: 'vitaminas',
-      name: 'Vitaminas',
-      description: 'Bienestar diario para sentirte mejor',
-      image: '/categories/image-01-transparent.png',
-      alt: 'Vitaminas para el bienestar diario',
-      colorClass: 'story-card--coral',
-      link: '/productos/categoria/vitaminas',
+      id: 'cuidado-diabetes',
+      name: 'Cuidado de la diabetes',
+      description: 'Control y confianza en tu rutina',
+      image: '/categories/image-03-transparent.png',
+      alt: 'Productos para el cuidado de la diabetes',
+      colorClass: 'story-card--purple',
+      link: '/productos/categoria/cuidado-diabetes',
       bg: '#f6ecc8',
       color: '#0a0a0a'
     },
@@ -44,8 +44,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       link: '/productos/categoria/cereales-frutos-secos',
       bg: '#f6ecc8',
       color: '#0a0a0a'
-    },
-   
+    }
   ];
 
   private context?: gsap.Context;
