@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <main class="products-page">
   <div class="products-page__container">
     <header class="products-page__header">
@@ -12,16 +11,93 @@
       </span>
     </header>
 
+    <!-- Template reutilizable del skeleton -->
+    <ng-template
+      #productSkeleton
+      let-items="items"
+    >
+      @for (
+        skeleton of items;
+        track $index
+      ) {
+        <article
+          class="product-card product-card--skeleton"
+          aria-hidden="true"
+        >
+          <div class="product-skeleton__image">
+            <span
+              class="product-skeleton__tag"
+            ></span>
+          </div>
+
+          <div class="product-card__content">
+            <span
+              class="
+                product-skeleton__line
+                product-skeleton__line--category
+              "
+            ></span>
+
+            <div class="product-skeleton__title">
+              <span
+                class="product-skeleton__line"
+              ></span>
+
+              <span
+                class="
+                  product-skeleton__line
+                  product-skeleton__line--short
+                "
+              ></span>
+            </div>
+
+            <div class="product-skeleton__footer">
+              <span
+                class="
+                  product-skeleton__line
+                  product-skeleton__line--price
+                "
+              ></span>
+
+              <span
+                class="product-skeleton__button"
+              ></span>
+            </div>
+          </div>
+        </article>
+      }
+    </ng-template>
+
     @if (loading) {
       <div
-        class="products-page__status"
+        role="status"
         aria-live="polite"
+        aria-label="Cargando productos de la categoría"
       >
-        Cargando productos...
+        <span class="sr-only">
+          Cargando productos de
+          {{ categoryName }}...
+        </span>
+
+        <section
+          class="products-grid"
+          aria-hidden="true"
+        >
+          <ng-container
+            [ngTemplateOutlet]="productSkeleton"
+            [ngTemplateOutletContext]="{
+              items: initialSkeletons
+            }"
+          ></ng-container>
+        </section>
       </div>
     } @else if (!categoryFound) {
       <div
-        class="products-page__status products-page__status--error"
+        class="
+          products-page__status
+          products-page__status--error
+        "
+        role="alert"
       >
         La categoría solicitada no existe.
       </div>
@@ -30,13 +106,15 @@
       products.length === 0
     ) {
       <div
-        class="products-page__status products-page__status--error"
+        class="
+          products-page__status
+          products-page__status--error
+        "
+        role="alert"
       >
         {{ errorMessage }}
       </div>
-    } @else if (
-      products.length === 0
-    ) {
+    } @else if (products.length === 0) {
       <div class="products-page__status">
         Todavía no hay productos disponibles
         en esta categoría.
@@ -44,7 +122,10 @@
     } @else {
       <section
         class="products-grid"
-        [attr.aria-label]="'Productos de ' + categoryName"
+        [attr.aria-label]="
+          'Productos de ' + categoryName
+        "
+        [attr.aria-busy]="loadingMore"
       >
         @for (
           product of products;
@@ -53,8 +134,14 @@
           <article class="product-card">
             <a
               class="product-card__image"
-              [routerLink]="['/products', product.slug]"
-              [attr.aria-label]="'Ver detalle de ' + product.name"
+              [routerLink]="[
+                '/products',
+                product.slug
+              ]"
+              [attr.aria-label]="
+                'Ver detalle de ' +
+                product.name
+              "
             >
               @if (product.label) {
                 <span class="product-card__label">
@@ -70,38 +157,75 @@
             </a>
 
             <div class="product-card__content">
-              <p>{{ product.category }}</p>
+              <p>
+                {{ product.category }}
+              </p>
 
               <h2>
-                <a [routerLink]="['/products', product.slug]">
+                <a
+                  [routerLink]="[
+                    '/products',
+                    product.slug
+                  ]"
+                >
                   {{ product.name }}
                 </a>
               </h2>
 
               <div class="product-card__footer">
                 <strong>
-                  S/. {{ product.price | number:'1.2-2' }}
+                  S/.
+                  {{
+                    product.price
+                      | number:'1.2-2'
+                  }}
                 </strong>
 
                 <div class="product-card__add-wrapper">
-                  @if (cartQuantity(product.id) > 0) {
+                  @if (
+                    cartQuantity(product.id) > 0
+                  ) {
                     <button
                       type="button"
                       class="product-card__add"
-                      [attr.aria-label]="'Disminuir una unidad de ' + product.name"
-                      (click)="decreaseCart(product.id)"
-                      (mouseenter)="showAddButtonEffect($event)"
-                      (mouseleave)="hideAddButtonEffect($event)"
-                      (focus)="showAddButtonEffect($event)"
-                      (blur)="hideAddButtonEffect($event)"
+                      [attr.aria-label]="
+                        'Disminuir una unidad de ' +
+                        product.name
+                      "
+                      (click)="
+                        decreaseCart(product.id)
+                      "
+                      (mouseenter)="
+                        showAddButtonEffect($event)
+                      "
+                      (mouseleave)="
+                        hideAddButtonEffect($event)
+                      "
+                      (focus)="
+                        showAddButtonEffect($event)
+                      "
+                      (blur)="
+                        hideAddButtonEffect($event)
+                      "
                     >
-                      <span class="product-card__add-fill" aria-hidden="true"></span>
-                      <ion-icon class="product-card__add-icon" name="remove-outline" aria-hidden="true"></ion-icon>
+                      <span
+                        class="product-card__add-fill"
+                        aria-hidden="true"
+                      ></span>
+
+                      <ion-icon
+                        class="product-card__add-icon"
+                        name="remove-outline"
+                        aria-hidden="true"
+                      ></ion-icon>
                     </button>
 
                     <span
                       class="product-card__quantity"
-                      [attr.aria-label]="cartQuantity(product.id) + ' unidades en el carrito'"
+                      [attr.aria-label]="
+                        cartQuantity(product.id) +
+                        ' unidades en el carrito'
+                      "
                     >
                       {{ cartQuantity(product.id) }}
                     </span>
@@ -110,13 +234,27 @@
                   <button
                     type="button"
                     class="product-card__add"
-                    [class.has-items]="cartQuantity(product.id) > 0"
-                    [attr.aria-label]="'Agregar ' + product.name + ' al carrito'"
+                    [class.has-items]="
+                      cartQuantity(product.id) > 0
+                    "
+                    [attr.aria-label]="
+                      'Agregar ' +
+                      product.name +
+                      ' al carrito'
+                    "
                     (click)="addToCart(product)"
-                    (mouseenter)="showAddButtonEffect($event)"
-                    (mouseleave)="hideAddButtonEffect($event)"
-                    (focus)="showAddButtonEffect($event)"
-                    (blur)="hideAddButtonEffect($event)"
+                    (mouseenter)="
+                      showAddButtonEffect($event)
+                    "
+                    (mouseleave)="
+                      hideAddButtonEffect($event)
+                    "
+                    (focus)="
+                      showAddButtonEffect($event)
+                    "
+                    (blur)="
+                      hideAddButtonEffect($event)
+                    "
                   >
                     <span
                       class="product-card__add-fill"
@@ -134,27 +272,34 @@
             </div>
           </article>
         }
+
+        @if (loadingMore) {
+          <ng-container
+            [ngTemplateOutlet]="productSkeleton"
+            [ngTemplateOutletContext]="{
+              items: moreSkeletons
+            }"
+          ></ng-container>
+        }
       </section>
 
       @if (errorMessage) {
-        <p class="products-page__more-error">
+        <p
+          class="products-page__more-error"
+          role="alert"
+        >
           {{ errorMessage }}
         </p>
       }
 
-      @if (hasMore) {
+      @if (hasMore && !loadingMore) {
         <div class="products-page__action">
           <button
             type="button"
             class="products-page__more"
-            [disabled]="loadingMore"
             (click)="showMore()"
           >
-            {{
-              loadingMore
-                ? 'Cargando...'
-                : 'Mostrar 20 más'
-            }}
+            Mostrar 20 más
 
             <ion-icon
               name="arrow-down-outline"
@@ -166,5 +311,4 @@
     }
   </div>
 </main>
-
 <app-footer></app-footer>

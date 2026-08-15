@@ -1,4 +1,7 @@
-import { DecimalPipe } from '@angular/common';
+import {
+  DecimalPipe,
+  NgTemplateOutlet
+} from '@angular/common';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -6,7 +9,10 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  RouterLink
+} from '@angular/router';
 import { gsap } from 'gsap';
 import { Subscription } from 'rxjs';
 import { CartService } from '../../../services/cart.service';
@@ -14,8 +20,8 @@ import {
   ProductRow,
   ProductsService
 } from '../../../services/products.service';
-import { FooterComponent } from '../../../shared/footer/footer.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
+import { FooterComponent } from '../../../shared/footer/footer.component';
 
 interface CatalogProduct {
   id: number;
@@ -32,10 +38,7 @@ interface CategoryConfig {
   description: string;
 }
 
-const CATEGORY_CONFIG: Record<
-  string,
-  CategoryConfig
-> = {
+const CATEGORY_CONFIG: Record<string, CategoryConfig> = {
   vitaminas: {
     name: 'Vitaminas',
     description:
@@ -72,14 +75,13 @@ const CATEGORY_CONFIG: Record<
   selector: 'app-category-products',
   imports: [
     DecimalPipe,
+    NgTemplateOutlet,
     RouterLink,
     HeaderComponent,
     FooterComponent
   ],
-  templateUrl:
-    './category-products.component.html',
-  styleUrl:
-    './category-products.component.css',
+  templateUrl: './category-products.component.html',
+  styleUrl: './category-products.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CategoryProductsComponent
@@ -96,10 +98,7 @@ export class CategoryProductsComponent
   private readonly pageSize = 20;
 
   private readonly addButtonTimelines =
-    new Map<
-      HTMLElement,
-      gsap.core.Timeline
-    >();
+    new Map<HTMLElement, gsap.core.Timeline>();
 
   private routeSubscription?: Subscription;
 
@@ -114,18 +113,19 @@ export class CategoryProductsComponent
   categoryFound = true;
   errorMessage = '';
 
+  readonly initialSkeletons =
+    Array.from({ length: 20 });
+
+  readonly moreSkeletons =
+    Array.from({ length: 5 });
+
   ngOnInit(): void {
     this.routeSubscription =
-      this.route.paramMap.subscribe(
-        params => {
-          const slug =
-            params.get('slug') ?? '';
+      this.route.paramMap.subscribe(params => {
+        const slug = params.get('slug') ?? '';
 
-          void this.initializeCategory(
-            slug
-          );
-        }
-      );
+        void this.initializeCategory(slug);
+      });
   }
 
   async showMore(): Promise<void> {
@@ -146,9 +146,7 @@ export class CategoryProductsComponent
     }
   }
 
-  addToCart(
-    product: CatalogProduct
-  ): void {
+  addToCart(product: CatalogProduct): void {
     this.cartService.add({
       id: product.id,
       name: product.name,
@@ -162,17 +160,11 @@ export class CategoryProductsComponent
     this.cartService.decrease(productId);
   }
 
-  cartQuantity(
-    productId: number
-  ): number {
-    return this.cartService.quantityOf(
-      productId
-    );
+  cartQuantity(productId: number): number {
+    return this.cartService.quantityOf(productId);
   }
 
-  showAddButtonEffect(
-    event: Event
-  ): void {
+  showAddButtonEffect(event: Event): void {
     const button =
       event.currentTarget as HTMLElement;
 
@@ -234,9 +226,7 @@ export class CategoryProductsComponent
     );
   }
 
-  hideAddButtonEffect(
-    event: Event
-  ): void {
+  hideAddButtonEffect(event: Event): void {
     const button =
       event.currentTarget as HTMLElement;
 
@@ -302,9 +292,7 @@ export class CategoryProductsComponent
     this.routeSubscription?.unsubscribe();
 
     this.addButtonTimelines.forEach(
-      timeline => {
-        timeline.kill();
-      }
+      timeline => timeline.kill()
     );
 
     this.addButtonTimelines.clear();
@@ -313,10 +301,7 @@ export class CategoryProductsComponent
   private async initializeCategory(
     slug: string
   ): Promise<void> {
-    console.log('slug', slug);
-    
-    const category =
-      CATEGORY_CONFIG[slug];
+    const category = CATEGORY_CONFIG[slug];
 
     this.products = [];
     this.errorMessage = '';
@@ -338,9 +323,7 @@ export class CategoryProductsComponent
       return;
     }
 
-    this.categoryName =
-      category.name;
-
+    this.categoryName = category.name;
     this.categoryDescription =
       category.description;
 
@@ -360,8 +343,8 @@ export class CategoryProductsComponent
           );
 
       const newProducts =
-        page.products.map(
-          row => this.mapProduct(row)
+        page.products.map(row =>
+          this.mapProduct(row)
         );
 
       this.products = [
@@ -398,8 +381,7 @@ export class CategoryProductsComponent
         row.regularPrice ||
         0
       ),
-      label:
-        row.label || undefined
+      label: row.label || undefined
     };
   }
 }

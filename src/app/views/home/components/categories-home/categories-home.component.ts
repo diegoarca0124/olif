@@ -50,6 +50,13 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
   private context?: gsap.Context;
   private events = new AbortController();
   private buttonTimeline?: gsap.core.Timeline;
+  readonly initialSkeletons = Array.from({
+    length: 20
+  });
+
+  readonly moreSkeletons = Array.from({
+    length: 5
+  });
 
   constructor(private host: ElementRef<HTMLElement>) {}
 

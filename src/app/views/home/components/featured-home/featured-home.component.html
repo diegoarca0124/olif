@@ -20,15 +20,57 @@
     </header>
 
     @if (loading) {
-      <div
-        class="product-catalog__status"
-        aria-live="polite"
-      >
-        Cargando productos...
-      </div>
+  <div
+    class="product-catalog__loading"
+    role="status"
+    aria-live="polite"
+    aria-label="Cargando productos destacados"
+  >
+    <span class="sr-only">
+      Cargando productos destacados...
+    </span>
+
+    <div
+      class="product-catalog__grid"
+      aria-hidden="true"
+    >
+      @for (
+        skeleton of [1, 2, 3, 4, 5];
+        track skeleton
+      ) {
+        <article class="product-card product-card--skeleton">
+          <div class="product-skeleton__image">
+            <span class="product-skeleton__tag"></span>
+          </div>
+
+          <div class="product-card__information">
+            <span
+              class="product-skeleton__line product-skeleton__line--category"
+            ></span>
+
+            <div class="product-skeleton__title">
+              <span class="product-skeleton__line"></span>
+              <span
+                class="product-skeleton__line product-skeleton__line--short"
+              ></span>
+            </div>
+
+            <div class="product-skeleton__footer">
+              <span
+                class="product-skeleton__line product-skeleton__line--price"
+              ></span>
+
+              <span class="product-skeleton__button"></span>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
     } @else if (errorMessage) {
       <div
         class="product-catalog__status product-catalog__status--error"
+        role="alert"
       >
         {{ errorMessage }}
       </div>

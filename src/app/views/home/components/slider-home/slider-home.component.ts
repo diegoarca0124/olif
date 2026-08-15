@@ -21,16 +21,8 @@ interface SliderItem {
 export class SliderHomeComponent {
   slides: SliderItem[] = [
     {
-      image: '/banner-01.jpeg',
+      image: '/sliders/banner-01.webp',
       alt: 'Vitaminas y suplementos'
-    },
-    {
-      image: 'https://plus.unsplash.com/premium_photo-1726736525038-66c5306e08b0?q=80&w=1740&auto=format&fit=crop',
-      alt: 'Alimentos saludables'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1635096838726-4e936b59f3c5?q=80&w=1740&auto=format&fit=crop',
-      alt: 'Productos de cuidado personal'
     }
   ];
 

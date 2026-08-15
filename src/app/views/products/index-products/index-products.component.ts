@@ -56,6 +56,14 @@ export class IndexProductsComponent
   loadingMore = false;
   hasMore = true;
   errorMessage = '';
+  
+  readonly initialSkeletons = Array.from({
+    length: 20
+  });
+
+  readonly moreSkeletons = Array.from({
+    length: 5
+  });
 
   async ngOnInit(): Promise<void> {
     await this.loadProducts();

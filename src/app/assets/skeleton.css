@@ -1,0 +1,136 @@
+/* Skeleton de productos */
+
+.product-catalog__loading {
+  width: 100%;
+}
+
+.product-card--skeleton {
+  pointer-events: none;
+}
+
+.product-skeleton__image,
+.product-skeleton__line,
+.product-skeleton__button,
+.product-skeleton__tag {
+  background:
+    linear-gradient(
+      90deg,
+      #e5e6e0 25%,
+      #f2f2ed 50%,
+      #e5e6e0 75%
+    );
+  background-size: 200% 100%;
+  animation: product-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.product-skeleton__image {
+  aspect-ratio: 1 / 1.15;
+  background-color: #ebece6;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.product-skeleton__tag {
+  border-radius: 999px;
+  height: 26px;
+  left: 14px;
+  position: absolute;
+  top: 14px;
+  width: 72px;
+}
+
+.product-skeleton__line {
+  border-radius: 999px;
+  display: block;
+  height: 14px;
+  width: 100%;
+}
+
+.product-skeleton__line--category {
+  height: 8px;
+  margin-bottom: 12px;
+  width: 42%;
+}
+
+.product-skeleton__title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 2.5em;
+}
+
+.product-skeleton__line--short {
+  width: 72%;
+}
+
+.product-skeleton__footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.product-skeleton__line--price {
+  height: 15px;
+  width: 38%;
+}
+
+.product-skeleton__button {
+  border-radius: 50%;
+  flex: 0 0 auto;
+  height: 38px;
+  width: 38px;
+}
+
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@keyframes product-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .product-skeleton__image {
+    border-radius: 14px;
+  }
+
+  .product-skeleton__tag {
+    height: 21px;
+    left: 9px;
+    top: 9px;
+    width: 58px;
+  }
+
+  .product-skeleton__line {
+    height: 12px;
+  }
+
+  .product-skeleton__line--category {
+    height: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-skeleton__image,
+  .product-skeleton__line,
+  .product-skeleton__button,
+  .product-skeleton__tag {
+    animation: none;
+    background: #e5e6e0;
+  }
+}
