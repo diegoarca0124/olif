@@ -542,10 +542,9 @@ a {
 
 .nav-cart-count {
   align-items: center;
-  background: #e0eccc;
-  border: 2px solid #414f23;
+  background: #414f23;
   border-radius: 999px;
-  color: #414f23;
+  color: #fff;
   display: flex;
   font-size: 9px;
   font-weight: 800;

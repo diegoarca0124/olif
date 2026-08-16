@@ -2,10 +2,259 @@
 
 <main class="product-detail">
   @if (loading) {
-    <section class="product-detail__state" aria-live="polite">
-      <span class="product-detail__loader" aria-hidden="true"></span>
-      <p>Cargando producto...</p>
-    </section>
+    <div
+      class="
+        product-detail__container
+        detail-skeleton
+      "
+      role="status"
+      aria-live="polite"
+      aria-label="Cargando detalle del producto"
+    >
+      <span class="sr-only">
+        Cargando detalle del producto...
+      </span>
+
+      <!-- Breadcrumbs -->
+      <div
+        class="detail-skeleton__breadcrumbs"
+        aria-hidden="true"
+      >
+        <span
+          class="
+            detail-skeleton__surface
+            detail-skeleton__breadcrumb
+          "
+        ></span>
+
+        <span
+          class="
+            detail-skeleton__surface
+            detail-skeleton__breadcrumb
+            detail-skeleton__breadcrumb--small
+          "
+        ></span>
+      </div>
+
+      <section
+        class="product-detail__hero"
+        aria-hidden="true"
+      >
+        <!-- Galería -->
+        <div class="product-detail__gallery">
+          <div
+            class="
+              product-detail__image-stage
+              detail-skeleton__surface
+              detail-skeleton__main-image
+            "
+          >
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__label
+              "
+            ></span>
+          </div>
+
+          <div class="product-detail__thumbnails">
+            @for (
+              thumbnail of [1, 2, 3];
+              track thumbnail
+            ) {
+              <span
+                class="
+                  product-detail__thumbnail
+                  detail-skeleton__surface
+                "
+              ></span>
+            }
+          </div>
+        </div>
+
+        <!-- Información -->
+        <div class="product-detail__info">
+          <span
+            class="
+              detail-skeleton__surface
+              detail-skeleton__category
+            "
+          ></span>
+
+          <div class="detail-skeleton__title">
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__line
+              "
+            ></span>
+
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__line
+                detail-skeleton__line--title-short
+              "
+            ></span>
+          </div>
+
+          <div class="detail-skeleton__price">
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__price-current
+              "
+            ></span>
+
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__price-before
+              "
+            ></span>
+          </div>
+
+          <div class="detail-skeleton__description">
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__line
+              "
+            ></span>
+
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__line
+              "
+            ></span>
+
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__line
+                detail-skeleton__line--medium
+              "
+            ></span>
+          </div>
+
+          <!-- Características -->
+          <div class="detail-skeleton__facts">
+            @for (
+              fact of [1, 2];
+              track fact
+            ) {
+              <div>
+                <span
+                  class="
+                    detail-skeleton__surface
+                    detail-skeleton__fact-label
+                  "
+                ></span>
+
+                <span
+                  class="
+                    detail-skeleton__surface
+                    detail-skeleton__fact-value
+                  "
+                ></span>
+              </div>
+            }
+          </div>
+
+          <!-- Cantidad y botón -->
+          <div class="product-detail__purchase">
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__quantity
+              "
+            ></span>
+
+            <span
+              class="
+                detail-skeleton__surface
+                detail-skeleton__add
+              "
+            ></span>
+          </div>
+
+          <!-- Beneficios -->
+          <div class="detail-skeleton__benefits">
+            @for (
+              benefit of [1, 2];
+              track benefit
+            ) {
+              <div class="detail-skeleton__benefit">
+                <span
+                  class="
+                    detail-skeleton__surface
+                    detail-skeleton__benefit-icon
+                  "
+                ></span>
+
+                <div>
+                  <span
+                    class="
+                      detail-skeleton__surface
+                      detail-skeleton__benefit-title
+                    "
+                  ></span>
+
+                  <span
+                    class="
+                      detail-skeleton__surface
+                      detail-skeleton__benefit-text
+                    "
+                  ></span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Descripción inferior -->
+      <section class="detail-skeleton__about">
+        <span
+          class="
+            detail-skeleton__surface
+            detail-skeleton__about-title
+          "
+        ></span>
+
+        <div class="detail-skeleton__about-content">
+          <span
+            class="
+              detail-skeleton__surface
+              detail-skeleton__line
+            "
+          ></span>
+
+          <span
+            class="
+              detail-skeleton__surface
+              detail-skeleton__line
+            "
+          ></span>
+
+          <span
+            class="
+              detail-skeleton__surface
+              detail-skeleton__line
+            "
+          ></span>
+
+          <span
+            class="
+              detail-skeleton__surface
+              detail-skeleton__line
+              detail-skeleton__line--medium
+            "
+          ></span>
+        </div>
+      </section>
+    </div>
   } @else if (notFound) {
     <section class="product-detail__state product-detail__state--empty">
       <span aria-hidden="true"><ion-icon name="cube-outline"></ion-icon></span>
