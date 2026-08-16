@@ -131,14 +131,20 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private updateHeaderScrollEffect(force = false): void {
+  private updateHeaderScrollEffect(
+    force = false
+  ): void {
     if (!this.pageLayer) {
       return;
     }
 
-    const isScrolled = window.scrollY > 12;
+    const isScrolled =
+      window.scrollY > 12;
 
-    if (!force && isScrolled === this.headerScrolled) {
+    if (
+      !force &&
+      isScrolled === this.headerScrolled
+    ) {
       return;
     }
 
@@ -149,9 +155,9 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
       this.pageLayer.nativeElement,
       {
         boxShadow: isScrolled
-          ? '0 14px 35px rgba(11, 31, 22, 0.18)'
-          : '0 0 0 rgba(11, 31, 22, 0)',
-        duration: 0.38,
+          ? '0 10px 28px rgba(11, 31, 22, 0.11)'
+          : '0 4px 16px rgba(11, 31, 22, 0.07)',
+        duration: 0.32,
         ease: 'power2.out',
         overwrite: 'auto'
       }

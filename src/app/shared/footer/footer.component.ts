@@ -221,7 +221,7 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
       context.lineTo(0, height);
       context.closePath();
 
-      context.fillStyle = '#f6ecc8';
+      context.fillStyle = '#9f9d70';
       context.fill();
     };
 

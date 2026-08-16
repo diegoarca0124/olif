@@ -11,8 +11,9 @@
   margin-inline: auto;
   max-width: 1600px;
   padding:
-    clamp(72px, 7vw, 120px)
-    var(--page-gutter);
+    clamp(40px, 4vw, 64px)
+    var(--page-gutter)
+    clamp(72px, 7vw, 120px);
 }
 
 .products-page__header {

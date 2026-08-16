@@ -31,7 +31,7 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Productos para el cuidado de la diabetes',
       colorClass: 'story-card--purple',
       link: '/productos/categoria/cuidado-diabetes',
-      bg: '#f6ecc8',
+      bg: '#bc9c78',
       color: '#0a0a0a'
     },
     {
@@ -42,8 +42,8 @@ export class CategoriesHomeComponent implements AfterViewInit, OnDestroy {
       alt: 'Selección de cereales y frutos secos',
       colorClass: 'story-card--blue',
       link: '/productos/categoria/cereales-frutos-secos',
-      bg: '#f6ecc8',
-      color: '#0a0a0a'
+      bg: '#374e3b',
+      color: '#fcfcf1'
     }
   ];
 

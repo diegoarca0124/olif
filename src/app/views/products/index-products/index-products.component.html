@@ -109,7 +109,8 @@
                 product.slug
               ]"
               [attr.aria-label]="
-                'Ver detalle de ' + product.name
+                'Ver detalle de ' +
+                product.name
               "
             >
               @if (product.label) {
@@ -161,7 +162,9 @@
                         'Disminuir una unidad de ' +
                         product.name
                       "
-                      (click)="decreaseCart(product.id)"
+                      (click)="
+                        decreaseCart(product.id)
+                      "
                       (mouseenter)="
                         showAddButtonEffect($event)
                       "
@@ -240,7 +243,13 @@
           </article>
         }
 
-        @if (!loadingMore) {
+        <!--
+          Skeletons adicionales.
+
+          Se muestran únicamente mientras se están
+          cargando más productos.
+        -->
+        @if (loadingMore) {
           @for (
             skeleton of moreSkeletons;
             track $index

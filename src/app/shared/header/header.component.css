@@ -10,8 +10,8 @@
 
 .page-layer {
   box-shadow:
-    0 0 0
-    rgba(11, 31, 22, 0);
+    0 4px 16px
+    rgba(11, 31, 22, 0.07);
   left: 0;
   position: fixed;
   right: 0;

@@ -5,7 +5,7 @@
 }
 
 .site-footer {
-  background-color: #f6ecc8;
+  background-color: #9f9d70;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -76,16 +76,15 @@
 }
 
 .site-footer__eyebrow {
-  color: #000;
+  color: #121212;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-weight: 900;
+  letter-spacing: 0.15em;
   margin: 0 0 18px;
-  text-transform: uppercase;
 }
 
 .site-footer__header h2 {
-  color: #1f2937;
+  color: #000000;
   font-family:
     "Neue Haas Display",
     Arial,
@@ -99,7 +98,7 @@
 }
 
 .site-footer__divider {
-  background: #e3e3e3;
+  background: #a8a8a8;
   height: 1px;
   margin-block: clamp(15px, 3vw, 48px);
   transform-origin: left center;
@@ -121,7 +120,7 @@
 }
 
 .site-footer__brand {
-  color: #414f23;
+  color: #000000;
   display: inline-block;
   font-family:
     Georgia,
@@ -180,9 +179,9 @@
 }
 
 .site-footer__social a:hover {
-  background: #E2A1AE;
-  border-color: #E2A1AE;
-  color: #18372d;
+  background: #fcffe3;
+  border-color: #fcffe3;
+  color: #fff;
   transform: translateY(-3px);
 }
 
